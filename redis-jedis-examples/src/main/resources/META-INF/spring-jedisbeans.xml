@@ -26,10 +26,10 @@
 		<constructor-arg type="int" value="6379" />
 	</bean>
 	<bean id="engine"
-		class="org.christophe.marchal.redis.client.jedis.examples.Engine">
+		class="org.christophe.marchal.redis.client.jedis.examples.thread.Engine">
 		<property name="jexecutor" ref="jedisExecutor"></property>
 	</bean>
 	<bean id="chronometer"
-		class="org.christophe.marchal.redis.client.jedis.examples.Chronometer">
+		class="org.christophe.marchal.redis.client.jedis.examples.thread.Chronometer">
 	</bean>
 </beans>

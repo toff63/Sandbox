@@ -1,4 +1,4 @@
-package org.christophe.marchal.redis.client.jedis.examples;
+package org.christophe.marchal.redis.client.jedis.examples.thread;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import org.christophe.marchal.redis.client.jedis.utils.BigSquareRoot;
 import org.christophe.marchal.redis.client.jedis.utils.JedisCallback;
 import org.christophe.marchal.redis.client.jedis.utils.JedisExecutor;
+import org.christophe.marchal.redis.client.jedis.utils.RedisOperation;
 
 import redis.clients.jedis.Jedis;
 
@@ -63,11 +64,18 @@ public class Engine {
 
 	
 	private BigDecimal computeResult() {
-		BigDecimal d =	jexecutor.execute(new JedisCallback<BigDecimal>() {
+		Class<?>[] clazz = {String[].class};
+		Object[] os = redisKeys.toArray(new String[redisKeys.size()]);
+		BigDecimal d =	jexecutor.execute(os, clazz, new JedisCallback<BigDecimal>() {
 
-			public BigDecimal process(Jedis jConnection) {
+			public RedisOperation getOperation() {
+				return RedisOperation.MGET;
+			}
+
+
+			public BigDecimal handleResult(Object o) {
+				List<String> ls = (List<String>) o;
 				BigDecimal res = new BigDecimal(0, MathContext.DECIMAL128);
-				List<String> ls = jConnection.mget(redisKeys.toArray(new String[redisKeys.size()]));
 				int i = 0;
 				for(String s : ls){
 					if(s != null){
@@ -77,6 +85,14 @@ public class Engine {
 				}
 				return res;
 			}
+
+			public void handleErrors(Throwable e) {
+				// TODO Auto-generated method stub
+
+			}
+
+
+
 		});
 		return d;
 	}
@@ -92,9 +108,5 @@ public class Engine {
 		System.out.println("Computed Pi = " + bigSquareRoot.get(val));
 		System.out.println("Real Pi value = " + Math.PI);
 		System.out.println("Number of threads which worked: " + statistics.size());
-		Set<String> keys = statistics.keySet();
-		for(String s : keys){
-			System.out.println(s + " executed " + (statistics.get(s) * ThreadExample.BUCKET_SIZE) + " values of n.");
-		}
 	}
 }

@@ -1,4 +1,4 @@
-package org.christophe.marchal.redis.client.jedis.examples;
+package org.christophe.marchal.redis.client.jedis.examples.thread;
 
 public class Chronometer {
 

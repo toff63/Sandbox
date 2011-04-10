@@ -1,15 +1,12 @@
-package org.christophe.marchal.redis.client.jedis.examples;
+package org.christophe.marchal.redis.client.jedis.examples.thread;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
-import org.christophe.marchal.redis.client.jedis.utils.BigSquareRoot;
 import org.christophe.marchal.redis.client.jedis.utils.JedisCallback;
 import org.christophe.marchal.redis.client.jedis.utils.JedisExecutor;
+import org.christophe.marchal.redis.client.jedis.utils.RedisOperation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
-
-import redis.clients.jedis.Jedis;
 
 /**
  * <p>This class compute sum from 1 to N of 1/(n*n) 
@@ -38,7 +35,7 @@ public class ThreadExample {
 		Engine engine = ac.getBean(Engine.class);
 		Chronometer chronometer = ac.getBean(Chronometer.class);
 		try{
-			cleanRedis(je);
+			je.cleanKeys();
 			chronometer.start();
 			BigDecimal d = engine.compute();
 			Long time = chronometer.stop();
@@ -55,16 +52,5 @@ public class ThreadExample {
 
 	}
 
-	private static void cleanRedis(JedisExecutor je) {
-		je.voidExecute(new JedisCallback<Object>() {
-
-			public Object process(Jedis jConnection) {
-				jConnection.flushAll();
-				return null;
-			}
-
-		});
-
-	}
 
 }
