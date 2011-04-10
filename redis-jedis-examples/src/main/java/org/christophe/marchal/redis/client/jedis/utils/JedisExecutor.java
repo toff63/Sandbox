@@ -85,8 +85,7 @@ public class JedisExecutor {
 		return null;
 	}
 
-
-	public <T> T pipeline(JedisCallback<T> callback, PipelineBlock pipelineBlock){
+	public <T> T pipeline(PipelineBlock pipelineBlock, JedisCallback<T> callback){
 		Jedis jedis = pool.getResource();
 		try{
 			List<Object> results = jedis.pipelined(pipelineBlock);
