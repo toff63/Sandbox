@@ -35,7 +35,7 @@ public class ThreadExample {
 		Engine engine = ac.getBean(Engine.class);
 		Chronometer chronometer = ac.getBean(Chronometer.class);
 		try{
-			je.cleanKeys();
+			je.flushAll();
 			chronometer.start();
 			BigDecimal d = engine.compute();
 			Long time = chronometer.stop();

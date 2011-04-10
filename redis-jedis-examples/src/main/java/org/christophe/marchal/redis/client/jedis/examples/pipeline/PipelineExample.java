@@ -14,7 +14,7 @@ public class PipelineExample {
 	public static void main(String[] args) throws InterruptedException {
 		ac = new GenericXmlApplicationContext("classpath:META-INF/spring-jedisbeans.xml");
 		JedisExecutor je = ac.getBean(JedisExecutor.class);
-		je.cleanKeys();
+		je.flushAll();
 		
 		List<String> ids = new ArrayList<String>();
 		for (int i = 0 ; i < 10000 ; i ++){

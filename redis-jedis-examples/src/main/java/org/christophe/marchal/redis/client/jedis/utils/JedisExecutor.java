@@ -20,9 +20,7 @@ public class JedisExecutor {
 		try{
 			RedisOperation op = callback.getOperation();
 
-			if(RedisOperation.FLUSHALL.equals(op)){
-				jConnection.flushAll();
-			} else if(RedisOperation.MGET.equals(op)){
+			if(RedisOperation.MGET.equals(op)){
 				Object res = getMset(jConnection, args, clazz); 
 				return callback.handleResult(res);
 			} else if (RedisOperation.SET.equals(op)){
@@ -40,7 +38,7 @@ public class JedisExecutor {
 		return null;
 	}
 
-	public void cleanKeys(){
+	public void flushAll(){
 		Jedis jConnection = pool.getResource();
 		try{
 			jConnection.flushAll();
