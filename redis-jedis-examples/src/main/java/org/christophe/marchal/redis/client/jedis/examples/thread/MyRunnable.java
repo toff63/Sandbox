@@ -5,9 +5,6 @@ import java.math.MathContext;
 
 import org.christophe.marchal.redis.client.jedis.utils.JedisCallback;
 import org.christophe.marchal.redis.client.jedis.utils.JedisExecutor;
-import org.christophe.marchal.redis.client.jedis.utils.RedisOperation;
-
-import redis.clients.jedis.Jedis;
 
 public class MyRunnable implements Runnable{
 
