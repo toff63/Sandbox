@@ -38,22 +38,17 @@ public class MyRunnable implements Runnable{
 			BigDecimal val = BigDecimal.valueOf(1).divide(j2,  MathContext.DECIMAL128);
 			sum = sum.add(val, MathContext.DECIMAL128);
 		}
-		
-		Object[] os = {String.valueOf(firstIndice) , String.valueOf(sum)};
-		Class<?>[] clazz = {String.class, String.class};
 
-		je.execute(os, clazz, new JedisCallback<Object>() {
 
-			public RedisOperation getOperation() {
-				return RedisOperation.SET;
-			}
+		Boolean isOk = je.set(new JedisCallback<Boolean>() {
 
-			public Object handleResult(Object res) {
+			public Boolean handleResult(Object res) {
 				String result = (String)res ;
 				if(! "OK".equals(result)){
 					System.out.print("Couldn't insert value in redis");
+					return false;
 				}
-				return null;
+				return true;
 			}
 
 			public void handleErrors(Throwable e) {
@@ -61,7 +56,7 @@ public class MyRunnable implements Runnable{
 
 			}
 
-		});
+		}, String.valueOf(firstIndice), String.valueOf(sum) );
 	}
 
 

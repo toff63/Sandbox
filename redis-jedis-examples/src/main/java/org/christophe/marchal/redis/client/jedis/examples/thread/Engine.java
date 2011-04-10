@@ -64,14 +64,7 @@ public class Engine {
 
 	
 	private BigDecimal computeResult() {
-		Class<?>[] clazz = {String[].class};
-		Object[] os = redisKeys.toArray(new String[redisKeys.size()]);
-		BigDecimal d =	jexecutor.execute(os, clazz, new JedisCallback<BigDecimal>() {
-
-			public RedisOperation getOperation() {
-				return RedisOperation.MGET;
-			}
-
+		BigDecimal d =	jexecutor.mget(new JedisCallback<BigDecimal>() {
 
 			public BigDecimal handleResult(Object o) {
 				List<String> ls = (List<String>) o;
@@ -91,9 +84,7 @@ public class Engine {
 
 			}
 
-
-
-		});
+		}, redisKeys.toArray(new String[redisKeys.size()]));
 		return d;
 	}
 

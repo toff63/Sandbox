@@ -14,21 +14,43 @@ public class JedisExecutor {
 	}
 
 
-	public <T> T execute(Object[] args, Class<?>[] clazz, JedisCallback<T> callback){
+	public <T> T set(JedisCallback<T> callback, String key, String value){
 		Jedis jConnection = pool.getResource();
 
 		try{
-			RedisOperation op = callback.getOperation();
+			String res = jConnection.set(key, value);
+			return callback.handleResult(res);
 
-			if(RedisOperation.MGET.equals(op)){
-				Object res = getMset(jConnection, args, clazz); 
-				return callback.handleResult(res);
-			} else if (RedisOperation.SET.equals(op)){
-				Object res;
-				res = handleSet(jConnection, args, clazz); 
-				return callback.handleResult(res);
-				 
-			}
+		} catch(Exception e){
+			callback.handleErrors(e);
+		}
+		finally {
+			pool.returnResource(jConnection);
+		}
+		return null;
+	}
+	
+	public <T> T mget( JedisCallback<T> callback, String... keys){
+		Jedis jConnection = pool.getResource();
+		try{
+			 List<String> res = jConnection.mget(keys);
+			 return callback.handleResult(res);
+
+		} catch(Exception e){
+			callback.handleErrors(e);
+		}
+		finally {
+			pool.returnResource(jConnection);
+		}
+		return null;
+	}
+	
+	public List<String> mget( JedisCallback<List<String>> callback, byte... keys){
+		Jedis jConnection = pool.getResource();
+		try{
+			 List<byte[]> res = jConnection.mget(keys);
+			 return callback.handleResult(res);
+
 		} catch(Exception e){
 			callback.handleErrors(e);
 		}
