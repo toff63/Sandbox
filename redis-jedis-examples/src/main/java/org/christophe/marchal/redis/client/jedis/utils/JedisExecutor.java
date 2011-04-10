@@ -4,6 +4,7 @@ import java.util.List;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.PipelineBlock;
 
 public class JedisExecutor {
 
@@ -29,12 +30,12 @@ public class JedisExecutor {
 		}
 		return null;
 	}
-	
+
 	public <T> T mget( JedisCallback<T> callback, String... keys){
 		Jedis jConnection = pool.getResource();
 		try{
-			 List<String> res = jConnection.mget(keys);
-			 return callback.handleResult(res);
+			List<String> res = jConnection.mget(keys);
+			return callback.handleResult(res);
 
 		} catch(Exception e){
 			callback.handleErrors(e);
@@ -44,12 +45,12 @@ public class JedisExecutor {
 		}
 		return null;
 	}
-	
+
 	public List<String> mget( JedisCallback<List<String>> callback, byte... keys){
 		Jedis jConnection = pool.getResource();
 		try{
-			 List<byte[]> res = jConnection.mget(keys);
-			 return callback.handleResult(res);
+			List<byte[]> res = jConnection.mget(keys);
+			return callback.handleResult(res);
 
 		} catch(Exception e){
 			callback.handleErrors(e);
@@ -70,30 +71,30 @@ public class JedisExecutor {
 		}
 	}
 
-	private Object handleSet(Jedis jConnection, Object[] args,
-			Class<?>[] clazz) {
-		if(clazz[0].equals(String.class) && clazz[1].equals(String.class)){
-			String key = (String) args[0];
-			String value = (String) args[1];
-			return  jConnection.set(key, value);
-			
-		} else if (clazz[0].equals(Byte[].class) && clazz[1].equals(Byte[].class)){
-			byte[] keys = (byte[]) args[0];
-			byte[] values = (byte[]) args[1];
-			return jConnection.set(keys, values);
+	public <T> T lpush(JedisCallback<T> callback, String key, String value){
+		Jedis jConnection = pool.getResource();
+		try{
+			Long l = jConnection.lpush(key, value);
+			return callback.handleResult(l);
+		}catch (Exception e) {
+			callback.handleErrors(e);
+		}
+		finally{
+			pool.returnResource(jConnection);
 		}
 		return null;
 	}
 
 
-	private Object getMset(Jedis jConnection,
-			Object[] args, Class<?>[] clazz) {
-		if(clazz[0].equals(String[].class)){
-			String[] keys = (String[]) args;
-			return jConnection.mget(keys);
-		} else if (clazz[0].equals(Byte[].class)){
-			byte[] keys = (byte[]) args[0];
-			return jConnection.mget(keys);
+	public <T> T pipeline(JedisCallback<T> callback, PipelineBlock pipelineBlock){
+		Jedis jedis = pool.getResource();
+		try{
+			List<Object> results = jedis.pipelined(pipelineBlock);
+			return callback.handleResult(results);
+		} catch (Exception e) {
+			callback.handleErrors(e);
+		} finally{
+			pool.returnResource(jedis);
 		}
 		return null;
 	}

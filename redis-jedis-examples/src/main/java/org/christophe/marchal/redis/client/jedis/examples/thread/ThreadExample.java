@@ -36,9 +36,9 @@ public class ThreadExample {
 		Chronometer chronometer = ac.getBean(Chronometer.class);
 		try{
 			je.flushAll();
-			chronometer.start();
+			Long start = chronometer.start();
 			BigDecimal d = engine.compute();
-			Long time = chronometer.stop();
+			Long time = chronometer.stop(start);
 			System.out.println("Computing Pi thanks to the 2-serie: Sum of 1/(n*n) = Pi * Pi /6 when n tend to infinity");
 			System.out.println("Computing with " + POOL_SIZE + " threads buckets of " + BUCKET_SIZE);
 			engine.displayResult(d);
