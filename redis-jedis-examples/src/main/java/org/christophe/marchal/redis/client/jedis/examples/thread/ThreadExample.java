@@ -30,7 +30,7 @@ public class ThreadExample {
 
 
 	public static void main(String[] args) throws InterruptedException {
-		ac = new GenericXmlApplicationContext("classpath:META-INF/spring-jedis-failover-beans.xml");
+		ac = new GenericXmlApplicationContext("classpath:META-INF/spring-jedisbeans.xml");
 		JedisExecutor je = ac.getBean(JedisExecutor.class);
 		Engine engine = ac.getBean(Engine.class);
 		Chronometer chronometer = ac.getBean(Chronometer.class);
