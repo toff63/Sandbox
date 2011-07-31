@@ -1,0 +1,15 @@
+(defun rootSquare(x)
+	(defun square(a)
+		(* a a))
+	(defun average(a b)
+		(/ (+ a b) 2))
+	(defun good-enough?(guess)
+		(< (abs (- (square guess) x))
+			 .001))
+	(defun try(guess)
+		(if (good-enough? guess)
+			guess
+			(try (average guess (/ x guess)))))
+	(try 1))
+
+(print (rootSquare 9))
