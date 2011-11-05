@@ -1,4 +1,5 @@
-#Sat Nov 05 13:24:15 BRST 2011
+#Sat Nov 05 13:33:13 BRST 2011
 //com.springsource.sts.config.flow.coordinates\:http\://www.springframework.org/schema/batch\:/spring-batch-sandbox/src/main/resources/META-INF/spring/module-context.xml=<?xml version\="1.0" encoding\="UTF-8"?>\n<graph>\n<element clazz\="JobModelElement" type\="job">\n<structure end\="705" endstart\="693" start\="464" startend\="489"/>\n<bounds height\="118" width\="118" x\="15" y\="17"/>\n</element>\n</graph>
 //com.springsource.sts.config.flow.coordinates\:http\://www.springframework.org/schema/batch\:/spring-batch-sandbox/src/main/resources/launch-context.xml=<?xml version\="1.0" encoding\="UTF-8"?>\n<graph/>
+//com.springsource.sts.config.flow.coordinates\:http\://www.springframework.org/schema/batch\:/spring-batch-simple/src/main/resources/launch-context.xml=<?xml version\="1.0" encoding\="UTF-8"?>\n<graph/>
 eclipse.preferences.version=1
