@@ -23,13 +23,22 @@ public class TweetReader implements ItemReader<Status> {
 		getNextStatuses();
 	}
 
-	@Override public Status read(){
+	@Override public Status read() throws Exception{
 		if(isFinnished()) return null;
 		if(reachedEndOfPage()){
 			currentPage.setPage(currentPage.getPage() + 1);
 			getNextStatuses();
 		}
 		return statuses.next();
+	}
+	
+	private void getNextStatuses() {
+		Twitter twitter = new TwitterFactory().getInstance();
+		try {
+			statuses = twitter.getUserTimeline(userId, currentPage).iterator();
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private boolean isFinnished() {
@@ -38,15 +47,6 @@ public class TweetReader implements ItemReader<Status> {
 
 	private boolean reachedEndOfPage() {
 		return !statuses.hasNext();
-	}
-
-	private void getNextStatuses() {
-		Twitter twitter = new TwitterFactory().getInstance();
-		try {
-			statuses = twitter.getUserTimeline(userId, currentPage).iterator();
-		} catch (TwitterException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void setUserId(String userId) {

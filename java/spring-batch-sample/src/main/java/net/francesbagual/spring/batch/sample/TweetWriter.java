@@ -12,7 +12,8 @@ public class TweetWriter implements ItemWriter<Tweet> {
 
 	private TweetDao dao;
 
-	@Override public void write(List<? extends Tweet> tweets){
+	@Override 
+	public void write(List<? extends Tweet> tweets) throws Exception{
 		for(Tweet tweet : tweets){
 			dao.save(tweet);
 		}
