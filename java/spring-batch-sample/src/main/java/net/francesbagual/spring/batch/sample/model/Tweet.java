@@ -1,4 +1,4 @@
-package net.francesbagual.sandbox.model;
+package net.francesbagual.spring.batch.sample.model;
 
 public class Tweet {
 	 

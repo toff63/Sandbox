@@ -1,6 +1,6 @@
-package net.francesbagual.sandbox;
+package net.francesbagual.spring.batch.sample;
 
-import net.francesbagual.sandbox.model.Tweet;
+import net.francesbagual.spring.batch.sample.model.Tweet;
 
 import org.springframework.batch.item.ItemProcessor;
 

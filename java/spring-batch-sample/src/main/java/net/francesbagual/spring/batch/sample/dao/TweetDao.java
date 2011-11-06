@@ -1,6 +1,6 @@
-package net.francesbagual.sandbox.dao;
+package net.francesbagual.spring.batch.sample.dao;
 
-import net.francesbagual.sandbox.model.Tweet;
+import net.francesbagual.spring.batch.sample.model.Tweet;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

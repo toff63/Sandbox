@@ -10,19 +10,24 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<bean id="tweetDao" class="net.francesbagual.sandbox.dao.TweetDao" />
-	<bean id="reader" class="net.francesbagual.sandbox.TweetReader" />
-	<bean id="processor" class="net.francesbagual.sandbox.TweetProcessor" />
-	<bean id="writer" class="net.francesbagual.sandbox.TweetWriter" p:dao-ref="tweetDao"/>
+	<bean id="tweetDao" class="net.francesbagual.spring.batch.sample.dao.TweetDao" />
+	<bean id="reader" 
+	      class="net.francesbagual.spring.batch.sample.TweetReader" init-method="init" 
+	      p:userId="toff63" 
+	      p:pageSize="20" 
+	      p:numberOfPages="3"/>
+	<bean id="processor" class="net.francesbagual.spring.batch.sample.TweetProcessor" />
+	<bean id="writer" class="net.francesbagual.spring.batch.sample.TweetWriter" p:dao-ref="tweetDao"/>
+	<bean id="incrementer" class="net.francesbagual.spring.batch.sample.TweetJobIncrementer" />
 
-	<batch:job id="jobTweet">
+	<batch:job id="jobTweet" incrementer="incrementer">
 		<batch:step id="step">
 			<batch:tasklet>
 				<batch:chunk 
 					reader="reader" 	
 					writer="writer" 
 					processor="processor"
-					commit-interval="20" />
+					commit-interval="20"/>
 			</batch:tasklet>
 		</batch:step>
 	</batch:job>
