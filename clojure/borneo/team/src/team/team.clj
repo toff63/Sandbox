@@ -17,21 +17,18 @@
 (defn- get-team-member [name]
   "Return user node"
   (io!)
-  (neo/with-tx
-    (first (neo/traverse (node-members) {:name name} :member))))
+    (first (neo/traverse (node-members) {:name name} :member)))
 
 (defn get-all-rel [name]
   (io!)
-  (neo/with-tx
-    (doall (map show-rel (neo/rels (get-team-member name))))))
+    (doall (map show-rel (neo/rels (get-team-member name)))))
 
 (defn get-all-team-members
   "Return all team members"
   []
   (io!)
-  (neo/with-tx
     (doall (map neo/props 
-                (neo/traverse (node-members) :member)))))
+                (neo/traverse (node-members) :member))))
 
 (defn- add-team-member! [name]
   (io!)
@@ -43,9 +40,9 @@
   (neo/with-tx
     (neo/create-rel! m1 :teammate m2)))
 
-(defn- create-quality-relationship [from to props]
+(defn- create-quality-relationship [from rel-name to props]
   (neo/set-props!
-      (neo/create-rel! from :hasQuality to) props))
+      (neo/create-rel! from rel-name to) props))
 
 (defn add-quality! [memberName qualityName level]
   (io!)
@@ -53,18 +50,16 @@
     (let [member (get-team-member memberName)
           quality (quality/get-quality qualityName)
           props {:level level}]
-      (create-quality-relationship member quality props)
-      (create-quality-relationship quality member props))))
+      (create-quality-relationship member :hasQuality quality props)
+      (create-quality-relationship quality :isQualityOf member props))))
 
 (defn- qualities-of [memberName]
   (io!)
-  (neo/with-tx
-     (neo/rels (get-team-member memberName) [:hasQuality])))
+     (neo/rels (get-team-member memberName) [:hasQuality]))
 
 (defn show-qualities-of [memberName]
   (io!)
-  (neo/with-tx
-    (doall (map show-rel (qualities-of memberName)))))
+    (doall (map show-rel (qualities-of memberName))))
 
 
 (defn add-team! [& names]

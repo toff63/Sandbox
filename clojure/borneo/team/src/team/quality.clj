@@ -20,17 +20,15 @@
 (defn get-quality [name]
   "Return user node"
   (io!)
-  (neo/with-tx
-    (first (neo/traverse (node-qualities) {:name name} :quality))))
+    (first (neo/traverse (node-qualities) {:name name} :quality)))
 
 (defn get-all-qualities
   "Return all qualities"
   []
   (io!)
-  (neo/with-tx
     (doall (map neo/props 
-                (neo/traverse (node-qualities) :quality)))))
+                (neo/traverse (node-qualities) :quality))))
 
 (defn get-team-member-having-quality [qualityName]
   (doall (map #(neo/prop % :name)
-              (neo/traverse (get-quality qualityName) :1 nil :hasQuality))))
+              (neo/traverse (get-quality qualityName) :1 nil :isQualityOf))))
