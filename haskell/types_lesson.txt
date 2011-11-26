@@ -1,0 +1,45 @@
+Types
+======
+
+Types are like labels. They always begin by a capital case
+To get a type you use ':t' in ghci
+Everything has a type, even functions
+
+sum3 :: Int -> Int -> Int -> Int
+sum3 x y z = x+y+z
+
+
+:t head
+head :: [a] ->a
+
+Type variable
+=============
+a here isn't a type, this i a type variable. This is like a generic but telling
+that we have the same behaviour, whatever the type of the list elements.
+
+Typeclass
+=========
+This is like an interface: it defines some behaviour(s). 
+
+:t (==)
+(==) :: (Eq a) => a -> a -> Bool
+
+Constraints: a must be a member of Eq (type variable)
+Type: == receive 2 type variables and return a Boolean
+
+You can force a type doing
+(5 :: Float) * (6 :: Float)
+
+But:
+(5 :: Int) + 3.2
+    No instance for (Fractional Int)
+      arising from the literal `3.2' at <interactive>:1:13-15
+    Possible fix: add an instance declaration for (Fractional Int)
+    In the second argument of `(+)', namely `3.2'
+    In the expression: (5 :: Int) + 3.2
+    In the definition of `it': it = (5 :: Int) + 3.2
+
+fromIntegral (5 :: Int) + 3.2
+8.2
+
+fromIntegral take an Integral and transform it to a Num (more generic)
