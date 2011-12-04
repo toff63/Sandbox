@@ -5,6 +5,7 @@ data Car = Car { owner :: String,
 								 carType :: String,
 								 licensePlate :: String
 							 } deriving (Show, Eq)
+
 data TaxedCar = TaxedCar {car :: Car,
 											    tax :: Int
                          } deriving (Show, Eq)
