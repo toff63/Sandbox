@@ -1,49 +1,37 @@
 (use 'team.core)
 (init!)
 ;; nil
-(add-qualities! "code" "test" "methodology" "coaching" "sharedDecision" "organization" "discipline")
+(add-qualities!  "organization" "discipline")
 ;; nil
-(add-team! "Christophe" "Diego" "Alexandre" "Jeferson" "Jackson" "José" "Andre")
+(add-team! "john" "bob" "fred" "mathias")
 ;; nil
 (get-all-team-members)
-;; ({:name "Andre"} {:name "José"} {:name "Jackson"} {:name "Jeferson"} {:name "Alexandre"} {:name "Diego"} {:name "Christophe"})
-(add-quality-to! "Alexandre" "organization" )
+;; ({:name "mathias"} {:name "fred"} {:name "bob"} {:name "john"})
+(add-quality-to! "mathias" "organization" )
 ;; nil
-(add-quality-to! "Diego" "organization" "good" )
+(add-quality-to! "fred" "organization" "good" )
 ;; nil
-(get-all-rel "Alexandre")
+(get-all-rel "mathias")
 ;;(
-;;  "Alexandre :hasQuality organization {:level \"bad\"}" 
-;;  "organization :isQualityOf Alexandre {:level \"bad\"}" 
-;;  "Alexandre :teammate Andre" 
-;;  "Alexandre :teammate José"
-;;  "Alexandre :teammate Jackson" 
-;;  "Alexandre :teammate Jeferson" 
-;;  "Alexandre :teammate Diego" 
-;;  "Alexandre :teammate Christophe" 
-;;  "Andre :teammate Alexandre" 
-;;  "José :teammate Alexandre" 
-;;  "Jackson :teammate Alexandre" 
-;;  "Jeferson :teammate Alexandre" 
-;;  "Diego :teammate Alexandre" 
-;;  "Christophe :teammate Alexandre" 
-;;  " :member Alexandre")
-(get-all-rel "Diego")
+;; "mathias :hasQuality organization {:level \"bad\"}"
+;; "mathias :teammate fred"
+;; "mathias :teammate bob"
+;; "mathias :teammate john"
+;; "fred :teammate mathias"
+;; "bob :teammate mathias"
+;; "john :teammate mathias"
+;; "organization :isQualityOf mathias {:level \"bad\"}"
+;; " :member mathias")
+(get-all-rel "fred")
 ;;(
-;;  "Diego :hasQuality organization {:level \"good\"}" 
-;;  "organization :isQualityOf Diego {:level \"good\"}" 
-;;  "Diego :teammate Andre" 
-;;  "Diego :teammate José" 
-;;  "Diego :teammate Jackson" 
-;;  "Diego :teammate Jeferson" 
-;;  "Diego :teammate Alexandre" 
-;;  "Diego :teammate Christophe" 
-;;  "Andre :teammate Diego" 
-;;  "José :teammate Diego" 
-;;  "Jackson :teammate Diego" 
-;;  "Jeferson :teammate Diego" 
-;;  "Alexandre :teammate Diego" 
-;;  "Christophe :teammate Diego" 
-;;  " :member Diego")
+;; "fred :hasQuality organization {:level \"good\"}"
+;; "fred :teammate mathias"
+;; "fred :teammate bob"
+;; "fred :teammate john"
+;; "mathias :teammate fred"
+;; "bob :teammate fred"
+;; "john :teammate fred"
+;; "organization :isQualityOf fred {:level \"good\"}"
+;; " :member fred") 
 (get-team-member-having-quality "organization")
-;; ("Diego" "Alexandre")
+;; ("fred" "mathias")
