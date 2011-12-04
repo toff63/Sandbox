@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="tweetDao" class="net.francesbagual.spring.batch.sample.dao.TweetDao" />
+	<bean id="reader" 
+	      class="net.francesbagual.spring.batch.sample.TweetReader" init-method="init" 
+	      p:userId="toff63" 
+	      p:pageSize="20" 
+	      p:numberOfPages="3"/>
+	<bean id="processor" class="net.francesbagual.spring.batch.sample.TweetProcessor" />
+	<bean id="writer" class="net.francesbagual.spring.batch.sample.TweetWriter" p:dao-ref="tweetDao"/>
+	<bean id="incrementer" class="net.francesbagual.spring.batch.sample.TweetJobIncrementer" />
+
+	<batch:job id="jobTweet" incrementer="incrementer">
+		<batch:step id="step">
+			<batch:tasklet>
+				<batch:chunk 
+					reader="reader" 	
+					writer="writer" 
+					processor="processor"
+					commit-interval="20"/>
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+</beans>

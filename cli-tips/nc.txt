@@ -1,0 +1,6 @@
+To send: tar zcfp – /path/to/directory | nc -w 3 127.0.0.1 1234
+Send directory to 127.0.0.1 na porta 1234
+tar zcfp compress with gzip and preserve file rights
+
+To receive: nc -l 1234 | tar xvzfp -
+nc -l for listen
