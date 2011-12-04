@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+      function listFiles(){
+        var input = document.querySelector("input[type='file']");
+        displayFiles(input.files);
+      }
+      function displayFiles(files){
+        if(files === null) return;
+        var ul = document.querySelector("#fileList>ul");
+        for(var i = 0; i < files.length; i++){
+          var li = document.createElement("li");
+//        li.innerHTML = files[i].name;
+          var img = document.createElement("img");
+          img.src = window.URL.createObjectURL(files[i]);
+          li.innerHTML = img;
+          ul.appendChild(li);
+        }
+      }
+      function init(){
+        var dropbox = document.querySelector("#dropzone");
+        dropbox.addEventListener("dragover", function(event){
+          event.preventDefault();
+          dropbox.innerHTML = "Drop here :D"
+        }, true);
+        dropbox.addEventListener("drop", function(event){
+          event.preventDefault();
+          var files = event.dataTransfer.files;
+          displayFiles(files);
+        }, true); 
+      }
+      window.addEventListener("load", init, true);
+    </script>
+    <style>
+      #dropzone {
+        display: block;
+        background-color: green;
+        margin: 5em;
+        padding: 5em;
+        width: 50em;
+        height: 10em;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="upload.php" enctype="multipart/form-data">
+      <input id="input" type="file" multiple="" onchange="listFiles()"/>
+      <div id="fileList"><ul></ul></div>
+      <div id="dropzone">Drop your images here</div>
+    </form>
+  </body>  
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File uploader with html5</title>
+    <script type="text/javascript" charset="UTF-8">
+      var filesToUpload = input.files;
+      function onDrop(e){
+        filesToUpload = e.dataTransfer.files;
+      }
+      var img = document.createElement("img");
+      img.src = window.URL.createObjectURL(file);
+      alert("todo bom");
+    </script>
+  </head>
+  <body>
+    <input type="file" multiple>
+  </body>
+</html>
