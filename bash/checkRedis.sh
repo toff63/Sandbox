@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# This script ensure redis is alive in a specific maching using the default
+# port 6379
+
+# This script should be invoked passing the server host name: 
+# checkRedis.sh localhost
+
 # Get time as a UNIX timestamp (seconds elapsed since Jan 1, 1970 0:00 UTC)
 START="$(date +%s)"
 expect<<EOF
