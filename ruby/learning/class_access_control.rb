@@ -47,3 +47,9 @@ class Myclass2
 	protected :method2, :method3
 	private :method5
 end
+
+
+class Book
+	attr_reader :title  # accessor method 'title'
+	protected :title    # only made accessible for book object, not to other objects
+end
