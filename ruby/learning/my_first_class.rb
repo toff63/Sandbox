@@ -29,4 +29,9 @@ class Book
 	end
 end
 
-puts "#{Book.new("Programming ruby", "Dave Thomas")}"
+book = Book.new("Programming ruby", "Dave Thomas")
+puts "#{book}"
+
+book.freeze # prevent modifications to the object => immutable
+book.author = "Me" # should return an error telling you cannot modify 
+									# a frozen object
