@@ -3,6 +3,11 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(window.document).ready(function(){
+					$("body").keydown(function(event){
+							if (event.which == 83){
+								$('#plane_features li:first').toggleClass('feature_selected');
+							}
+						});
 					$('#refresh').click(refresh_weight);
 					$('#weight_up').click(increment_weight);
 					$('#weight_down').click(function(event){
