@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(window.document).ready(function(){
+					$('#refresh').click(refresh_weight);
+					$('#weight_up').click(increment_weight);
+					$('#weight_down').click(function(event){
+						event.preventDefault();
+						var currentWeight = $('#display').text();
+						$('#display').text(currentWeight - 50);
+					});
+					$('div#plane_features li').hover(
+						function(){$(this).addClass('feature_hover');},
+						function(){$(this).removeClass('feature_hover');}
+					);
+			});
+function refresh_weight(){
+	var currentWeight = $('#display').text();
+	alert('Total Weight is ' + currentWeight);
+};
+function increment_weight(){
+	var currentWeight = parseInt($('#display').text());
+	$('#display').text(currentWeight + 50);
+};
+
+</script>
+<style type="text/css">
+	.feature_hover {
+	  border-left: 5px solid #f68173;
+}
+.feature_selected {
+  color: #fff;
+	  font-weight: bold;
+}
+#altitude {
+  width: 180px;
+	  border: 5px solid #9bb1b1;
+		  margin: 0 0 0 15px;
+			-moz-transform: rotate(8deg);
+			-webkit-transform: rotate(8deg);
+			transform: rotate(8deg);
+			}
+</style>
+	</head>
+	<body>
+		<div id="gross_weight">
+			<a href="#" id="weight_up">UP</a>
+			<a href="#" id="weight_down">DOWN</a>
+			<a href="#" id="refresh">Refresh</a>
+			<span id="display">1850</span>
+		</div>
+		<div id="plane_features">
+			<ul>
+				<li><a href="#">Seatbelts</a></li>
+				<li><a href="#">Cabin Lights</a></li>
+				<li><a href="#">Cargo Door</a></li>
+			</ul>
+		</div>
+		<div id="altitude" class="rotated-15">
+			--------
+		</div>
+		<ul id="nearby_flights">
+		</ul>
+	</body>
+</html>
