@@ -10,10 +10,13 @@
 						var currentWeight = $('#display').text();
 						$('#display').text(currentWeight - 50);
 					});
-					$('div#plane_features li').hover(
-						function(){$(this).addClass('feature_hover');},
-						function(){$(this).removeClass('feature_hover');}
-					);
+					$('div#plane_features li').hover(function(){
+						$(this).toggleClass('feature_hover');
+					});
+					$('#plane_features a').click(function(event){
+						event.preventDefault();
+						$(this).toggleClass('feature_selected');
+					});
 			});
 function refresh_weight(){
 	var currentWeight = $('#display').text();
@@ -26,6 +29,29 @@ function increment_weight(){
 
 </script>
 <style type="text/css">
+	body{
+		background: none repeat scroll 0 0 #584A3A;
+		color: #FFFFFF;
+	}
+
+	#plane_features a {
+		background: none repeat scroll 0 0 #493E34;
+		border-bottom: 2px solid #352D26;
+		border-top: 1px solid #625445;
+		display: block;
+		font-family: 'Lucida Sans','Lucida Sans Unicode',Geneva,Arial,sans-serif;
+		font-size: 0.9em;
+		line-height: 18px;
+		margin: 0 0 1px;
+		padding: 2px 0 1px;
+		text-align: center;
+		text-decoration: none;
+		width: 218px;
+	}
+	a {
+		color: #BDA98F;
+	}
+
 	.feature_hover {
 	  border-left: 5px solid #f68173;
 }
