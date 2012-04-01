@@ -41,3 +41,6 @@ def seperatePositiveAndNegative(a:Array[Int]):Array[Int] = {
     for(elem <- a if elem <= 0) c += elem
     return c.toArray
 }
+
+5.
+def average(a:Array[Double]):Double = a.sum / a.size
