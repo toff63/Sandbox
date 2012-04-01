@@ -65,3 +65,6 @@ def removeAllNegativeExceptFirst(a:Array[Int]):Array[Int] = {
   for(i <- (0 until indexes.size).reverse ) b.remove(indexes(i))
   return b.toArray
 }
+
+9.
+java.util.TimeZone.getAvailableIDs() filter {_ startsWith "America" } map {_ stripPrefix "America/"}
