@@ -14,8 +14,7 @@ def createRandomArray(n:Int):ArrayBuffer[Int] = {
 import collection.mutable.ArrayBuffer
 
 def swapAdjacent(a:Array[Int]): Array[Int] = {
-  val b = new ArrayBuffer[Int]();
-  b ++= a
+  val b = a.toBuffer
   for(i <- 0 until b.size if i % 2 == 0 ){
     if(i+1 < a.size){
      b.insert(i, b(i+1))
@@ -47,8 +46,7 @@ def average(a:Array[Double]):Double = a.sum / a.size
 
 6.
 Array(1,2,3,4,5,6,7,8,9,10).reverse
-val a = new ArrayBuffer[Int]()
-a ++= Array(1,2,3,4,5,6,7,8,9,10)
+val a = Array(1,2,3,4,5,6,7,8,9,10).toBuffer
 a.reverse
 
 7.
