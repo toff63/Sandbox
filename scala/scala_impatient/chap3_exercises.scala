@@ -44,3 +44,9 @@ def seperatePositiveAndNegative(a:Array[Int]):Array[Int] = {
 
 5.
 def average(a:Array[Double]):Double = a.sum / a.size
+
+6.
+Array(1,2,3,4,5,6,7,8,9,10).reverse
+val a = new ArrayBuffer[Int]()
+a ++= Array(1,2,3,4,5,6,7,8,9,10)
+a.reverse
