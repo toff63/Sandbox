@@ -58,3 +58,12 @@ def distinct(a:Array[Int]):Array[Int] = {
   b ++= a
   return b.distinct.toArray
 }
+
+8.
+def removeAllNegativeExceptFirst(a:Array[Int]):Array[Int] = {
+  import collection.mutable.ArrayBuffer
+  val b = a.toBuffer
+  val indexes = (for (i <- 0 until b.size if b(i) < 0) yield i).drop(1)
+  for(i <- (0 until indexes.size).reverse ) b.remove(indexes(i))
+  return b.toArray
+}
