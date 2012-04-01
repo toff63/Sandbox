@@ -50,3 +50,11 @@ Array(1,2,3,4,5,6,7,8,9,10).reverse
 val a = new ArrayBuffer[Int]()
 a ++= Array(1,2,3,4,5,6,7,8,9,10)
 a.reverse
+
+7.
+def distinct(a:Array[Int]):Array[Int] = {
+  import collection.mutable.ArrayBuffer
+  val b = new ArrayBuffer[Int]()
+  b ++= a
+  return b.distinct.toArray
+}
