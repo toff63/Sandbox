@@ -1,0 +1,37 @@
+1. !=             ##             %              &              *              +              -              /              <              <<             <=             
+==             >              >=             >>             >>>            ^              asInstanceOf   equals         getClass       hashCode       isInstanceOf   
+toByte         toChar         toDouble       toFloat        toInt          toLong         toShort        toString       unary_+        unary_-        unary_~        
+|   
+
+2. 
+scala> sqrt(3)
+res49: Double = 1.7320508075688772
+	
+scala> 3-res49*res49
+res50: Double = 4.440892098500626E-16
+
+3. val because each one you enter a new expression it generates a new one and
+scala> res50 = 1
+<console>:15: error: reassignment to val
+       res50 = 1
+
+they are immutable
+
+4. def * (n: Int): String
+	 Return the current string concatenated n times. 
+
+5. 10 pow 2 means 10 rased to the power 2 
+BigInt(10) pow 2
+
+6. scala> BigInt(2) pow 1024
+res54: scala.math.BigInt = 179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216
+
+7. import util._
+
+8. scala> BigInt(50,Random).toString(36)
+	res55: String = 98bhn447v8
+
+9. "Hello"(0)
+   "Hello".last
+
+10. Advantage: it doesn't create a new string in the JVM String pool
