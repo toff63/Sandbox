@@ -68,3 +68,13 @@ def removeAllNegativeExceptFirst(a:Array[Int]):Array[Int] = {
 
 9.
 java.util.TimeZone.getAvailableIDs() filter {_ startsWith "America" } map {_ stripPrefix "America/"}
+
+10.
+import collection.mutable._
+import collection.JavaConversions._
+def playWithJavaInterop():Buffer[String]={
+  import java.awt.datatransfer._
+  val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+  val res:Buffer[String] = flavors.getNativesForFlavor(DataFlavor.imageFlavor)
+  res
+}
