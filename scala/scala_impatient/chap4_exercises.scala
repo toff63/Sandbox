@@ -13,3 +13,16 @@ def wordFrequency(file:String) {
   }  
   print(freq)
 }
+
+3.
+def wordFrequency(file:String) {
+  val in = new java.util.Scanner(new java.io.File(file))
+  var freq = Map[String,Int]()
+  while(in.hasNext()){
+      val word = in.next()
+      val f = 1 + freq.getOrElse(word,0)
+      freq += (word -> f)
+  }  
+  print(freq)
+}
+
