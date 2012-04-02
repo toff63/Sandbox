@@ -71,3 +71,6 @@ def printSystemProperties() {
   val maxKeyLength = props.keySet.map(_ length).max
   for((key,value) <- props)  print(key + " " * (maxKeyLength - key.length + 1) + "| " + value + "\n")
 }
+
+8.
+def minmax(values: Array[Int]) : Tuple2[Int,Int] = (values.min , values.max)
