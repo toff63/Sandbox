@@ -62,3 +62,11 @@ val days = collection.mutable.LinkedHashMap("Monday" -> java.util.Calendar.MONDA
                                               "Sunday" ->java.util.Calendar.SUNDAY)
 
 for((day, calendarDay) <- days) print(day + " is " + calendarDay + "\n")
+
+7.
+def printSystemProperties() {
+  import collection.JavaConversions.propertiesAsScalaMap
+
+  val props: collection.Map[String,String] = System.getProperties()
+  print(props)
+}
