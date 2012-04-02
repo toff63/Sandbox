@@ -74,3 +74,6 @@ def printSystemProperties() {
 
 8.
 def minmax(values: Array[Int]) : Tuple2[Int,Int] = (values.min , values.max)
+
+9.
+def lteqgt(values: Array[Int], v:Int) : Tuple3[Int,Int,Int] = (values.filter( _ < v).length, values.filter(_ == v).length, values.filter(_ > v).length)
