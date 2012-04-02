@@ -68,5 +68,6 @@ def printSystemProperties() {
   import collection.JavaConversions.propertiesAsScalaMap
 
   val props: collection.Map[String,String] = System.getProperties()
-  print(props)
+  val maxKeyLength = props.keySet.map(_ length).max
+  for((key,value) <- props)  print(key + " " * (maxKeyLength - key.length + 1) + "| " + value + "\n")
 }
