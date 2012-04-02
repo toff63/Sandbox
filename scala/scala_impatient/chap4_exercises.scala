@@ -77,3 +77,7 @@ def minmax(values: Array[Int]) : Tuple2[Int,Int] = (values.min , values.max)
 
 9.
 def lteqgt(values: Array[Int], v:Int) : Tuple3[Int,Int,Int] = (values.filter( _ < v).length, values.filter(_ == v).length, values.filter(_ > v).length)
+
+10.
+it will create a Vector of tuples mapping H to W, e to o, l to l, l to l, o to d
+You could use it to encrypt a message using a simple map that change current letter to another using the map
