@@ -7,8 +7,6 @@ EC2_SECRET_KEY = 'access_key'
 
 conn = get_driver(Provider.EC2)(EC2_ACESS_ID, EC2_SECRET_KEY)
 
-script = ScriptDeployment("apt-get -y install puppet")
-
 key_path='/media/home_backup/SparkleShare/toffHome'
 key_name='US-EAST'
 
