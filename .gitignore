@@ -1,4 +1,5 @@
 target
 XPTeam
-.swp
+*.swp
 keys.txt
+*.beam
