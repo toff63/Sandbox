@@ -5,9 +5,9 @@ summary(diamonds)
 
 summary(diamonds$price)
 avesize <-round(mean(diamonds$carat), 4)
-clarity.levels <- levels(diamonds$clarity)
+clarity.factor <- factor(diamonds$clarity)
 
 p <- qplot(carat, price, 
-           data = diamonds, colors = clarity.levels,
+           data = diamonds, color = clarity.factor,
            xlab="Carat", ylab="Price",
            main="Diamond Pricing")
