@@ -1,5 +1,10 @@
 (function(){
 
+	Backbone.sync = function(method, model, success, error){ // override persistence storage with dummy function
+																													 // this enable Model.destroy without raising an error
+		success();
+	}
+	
 	var Item = Backbone.Model.extend({
 		defaults: {
 			part1: 'hello',
@@ -13,12 +18,39 @@
 
 	var ItemView = Backbone.View.extend({
 		tagName: 'li', // name of orphan root tag  in this this.el
-		initialize: function(){
-			_.bindAll(this, 'render');
+
+		events: {
+			'click span.swap': 'swap',
+			'click span.delete': 'remove'
 		},
+
+		initialize: function(){
+			_.bindAll(this, 'render', 'swap', 'unrender', 'remove');
+			
+			this.model.bind('change', this.render);
+			this.model.bind('remove', this.unrender);
+		},
+
 		render: function(){
-			$(this.el).html('<span>' + this.model.get('part1') + ' ' + this.model.get('part2') + '</span>');
+			$(this.el).html('<span style="color: black;">' + this.model.get('part1') + ' ' + this.model.get('part2') + '</span>' + 
+				'&nbsp; &nbsp; <span class="swap" style="font-family:sans-serif; color:blue; cursor:pointer;">[swap]</span> <span class="delete" style="cursor:pointer; color:red; font-family:sans-serif;">[delete]</span>');
 			return this; // this is just for chainable calls like .render().el
+		},
+
+		unrender: function(){
+			$(this.el).remove();
+		},
+
+		swap: function(){
+			var swapped = {
+				part1: this.model.get('part2'),
+				part2: this.model.get('part1')
+			};
+			this.model.set(swapped);
+		},
+
+		remove: function(){
+			this.model.destroy();
 		}
 	
 	});
