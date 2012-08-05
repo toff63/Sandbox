@@ -1,9 +1,9 @@
 (function(){
 
-	Backbone.sync = function(method, model, success, error){ // override persistence storage with dummy function
+//	Backbone.sync = function(method, model, success, error){ // override persistence storage with dummy function
 																													 // this enable Model.destroy without raising an error
-		success();
-	}
+//		success();
+//	}
 	
 	var Item = Backbone.Model.extend({
 		defaults: {
