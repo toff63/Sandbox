@@ -22,7 +22,7 @@ init([]) -> {ok, #state{}}.
 
 %% Handling call messages in a remote call procedure manner (rpc)
 handle_call({echo, Message}, _From, State) ->
-    Reply = string:concat("Received: ", Message),
+    Reply = string:concat("Echo: ", Message),
     {reply, Reply, State};
 handle_call({hello, Name}, _From, State) ->
     Reply = string:concat("Hello ", Name),
