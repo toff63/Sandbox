@@ -3,7 +3,7 @@
 -behaviour(gen_server).
 
 %% API
--export([start/0, echo/1]).
+-export([start_link/0, echo/1]).
 
 %% gen_server callbacks
 -export([init/1,
@@ -28,7 +28,7 @@ echo(Request) -> gen_server:call(?MODULE, Request).
 %% @spec start_link() -> {ok, Pid} | ignore | {error, Error}
 %% @end
 %%--------------------------------------------------------------------
-start() ->
+start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 %%%===================================================================
