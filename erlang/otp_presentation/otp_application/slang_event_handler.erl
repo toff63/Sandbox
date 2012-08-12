@@ -70,10 +70,10 @@ init([]) ->
 %% @end
 %%--------------------------------------------------------------------
 handle_event({set_alarm, {slang, fuck}}, State) ->
-    error_logger:info_msg("Don't send slangs mother fucker!"),
+    error_logger:info_msg("Don't send slangs mother fucker!~n"),
     {ok, State};
 handle_event({set_alarm, {slang, bitch}}, State) ->
-    error_logger:info_msg("Don't send slangs son of a bitch!"),
+    error_logger:info_msg("Don't send slangs son of a bitch!~n"),
     {ok, State};
 handle_event(Event, State) ->
     error_logger:error_msg("No behaviour specified for event: ~p~n", [Event]),
