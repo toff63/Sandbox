@@ -5,9 +5,6 @@ start(Name, Mod) ->
     register(Name,
              spawn(fun() -> loop(Name, Mod, Mod:init()) end)).
 
-upgrade_code(Name, NewMod) -> rpc(Name, {upgrade_code, NewMod}).
-
-
 rpc(Name, Request) ->
     Name ! {self(), Request},
     receive
@@ -16,11 +13,8 @@ rpc(Name, Request) ->
 
 loop(Name, Mod, OldState) ->
     receive 
-        {From, {upgrade_code, NewMod}} ->
-            From ! {Name, ack},
-            loop(Name, NewMod, OldState);
         {From, Request} -> 
-            {Response, NewState} = Mod:handle(Request, OldState),
+            {Response, NewState} = Mod:onMessage(Request, OldState),
             From ! {Name, Response},
             loop(Name, Mod, NewState)
     end.
