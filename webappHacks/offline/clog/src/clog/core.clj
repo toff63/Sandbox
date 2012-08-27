@@ -2,11 +2,11 @@
   (:use ring.adapter.jetty
         ring.middleware.resource
         ring.util.response
-        net.cgrand.moustage))
+        net.cgrand.moustache))
 
 (defn index
   [req]
-  (reponse "Welcome, to Clog - A Blog engine written in Clojure"))
+  (response "Welcome, to Clog - A Blog engine written in Clojure"))
 
 
 ;; Routes definition
@@ -16,4 +16,4 @@
 
 ;; start function for starting jetty
 (defn start [port]
-  (run jetty #'routes (:port (or port 8080) :join? false)))
+  (run-jetty #'routes {:port (or port 8080) :join? false}))
