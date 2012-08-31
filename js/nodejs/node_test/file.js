@@ -1,5 +1,6 @@
 var http = require('http');
 var fs = require('fs');
+var sys = require('sys');
 
 var file_path =  "/home/toff/Pictures/data_pictures/Villefranche1040277.JPG";
 fs.stat(file_path, function(err, stat){
@@ -13,18 +14,10 @@ fs.stat(file_path, function(err, stat){
         });
 
         var rs = fs.createReadStream(file_path);
-        rs.on('data', function(file_content){
-            var flushed = response.write(file_content);
-            if(!flushed){
-                rs.pause();   
+        sys.pump(rs, response, function(err){
+            if(err){
+                throw err;
             }
-        });
-
-        response.on('drain', function(){
-            rs.resume();
-        });
-        rs.on('end', function(){
-            response.end();
         });
 
     }).listen(4000);
