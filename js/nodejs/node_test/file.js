@@ -12,10 +12,21 @@ fs.stat(file_path, function(err, stat){
             'Content-Length' : stat.size
         });
 
-        fs.readFile(file_path, function(err, file_content){
-            response.write(file_content);
+        var rs = fs.createReadStream(file_path);
+        rs.on('data', function(file_content){
+            var flushed = response.write(file_content);
+            if(!flushed){
+                rs.pause();   
+            }
+        });
+
+        response.on('drain', function(){
+            rs.resume();
+        });
+        rs.on('end', function(){
             response.end();
         });
+
     }).listen(4000);
 });
 
