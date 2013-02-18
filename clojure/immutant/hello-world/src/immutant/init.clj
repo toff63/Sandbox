@@ -18,8 +18,8 @@
 
 (web/start "/" ring-handler)
 (web/start "/echo" echo-ring-handler)
-(web/start "/session" (ring-session/wrap-session
-                        (sandbar.stateful-session/wrap-stateful-session session-ring-handler)
+(web/start "/session" (sandbar.stateful-session/wrap-stateful-session
+                        session-ring-handler
                         {:store (immutant-session/servlet-store)}))
 ; (web/start "/foo" a-different-ring-handler)
 
