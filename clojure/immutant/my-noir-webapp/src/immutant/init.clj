@@ -1,12 +1,11 @@
 (ns immutant.init
-  (:use hello-world.core)
-  
   (:require [ring.middleware.session :as ring-session]
-            [immutant.web.session :as immutant-session]
             [immutant.messaging :as messaging]
             [immutant.web :as web]
-  ;          [immutant.util :as util])
-  ))
+            [immutant.util :as util]
+            [noir.server :as server]
+            [immutant.web.session :as immutant-session])
+  )
 
 ;; This file will be loaded when the application is deployed to Immutant, and
 ;; can be used to start services your app needs. Examples:
@@ -16,16 +15,14 @@
 ;; path given here is a sub-path to the global context-path for the app
 ;; if any.
 
-(web/start "/" ring-handler)
-(web/start "/echo" echo-ring-handler)
-(web/start "/session" (ring-session/wrap-session
-                        (sandbar.stateful-session/wrap-stateful-session session-ring-handler)
-                        {:store (immutant-session/servlet-store)}))
+; (web/start "/" my-ring-handler)
 ; (web/start "/foo" a-different-ring-handler)
 
 ;; To start a Noir app:
-; (server/load-views (util/app-relative "src/hello_world/views"))
-; (web/start "/" (server/gen-handler {:mode :dev :ns 'hello-world}))
+ (server/load-views (util/app-relative "src/my_noir_webapp/views"))
+ (web/start "/" (ring-session/wrap-session 
+                  (server/gen-handler {:mode :dev :ns 'my-noir-webapp})
+                  {:store (immutant-session/servlet-store)}))
 
 
 ;; Messaging allows for starting (and stopping) destinations (queues & topics)
