@@ -1,7 +1,7 @@
 ---
 comments: true
 date: 2013-03-30 
-layout: blog
+layout: post
 title: What does it mean to be a software architect
 ---
 
