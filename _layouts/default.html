@@ -4,23 +4,40 @@
     <meta charset="utf-8">
     <title>My way to become a software architect</title>
     <link rel="alternate" href="atom.xml" title="Christophe Marchal" type="application/atom+xml" />
-    <link rel="stylesheet" media="screen" href="/static/stylesheets/main.css">
+    <link rel="stylesheet" media="screen" href="/static/stylesheets/bootstrap.css" media="screen">
     <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png">
-    <script src="/static/javascripts/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
-
     <link href="http://fonts.googleapis.com/css?family=La+Belle+Aurore&amp;v1" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Cabin&amp;v1" rel="stylesheet" type="text/css">				
-    <script src="/static/javascripts/google-analytic.js" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body>
 
-    <header>
-      <a href="/index.html">Home</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/presentations.html">Lightning talks</a>
-    </header>
-    {{ content }}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/blog.html">Blog</a></li>
+              <li><a href="/presentations.html">Lightning talks</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
+    <div class="container">
+
+      {{ content }}
+
+    </div> 
+
+    <!-- Js placed at the end of the page to load faster -->
+    <script src="/static/javascripts/google-analytic.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>

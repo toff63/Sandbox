@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>My way to become a software architect</title>
-    <link rel="alternate" href="atom.xml" title="Christophe Marchal" type="application/atom+xml" />
-    <link rel="stylesheet" media="screen" href="/static/stylesheets/main.css">
-    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png">
-    <script src="/static/javascripts/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+---
+layout: default
+comments: true
+---
 
-    <link href="http://fonts.googleapis.com/css?family=La+Belle+Aurore&amp;v1" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Cabin&amp;v1" rel="stylesheet" type="text/css">				
-    <script src="/static/javascripts/google-analytic.js" type="text/javascript" charset="utf-8"></script>
-  </head>
+<article>
+  <header>
+    <h1><a href="{{ page.url }}" rel="bookmark" title="Permanent link to " >{{ page.title }}</a></h1>
+    <h5>
+      <time>{{ page.date | date: '%B' }} {{ page.date | date: '%e' }} {{ page.date | date: '%Y' }}</time> - <author>Christophe Marchal</author>
+    </h5>
+  </header>
 
-  <body>
-
-    <header>
-      <a href="/index.html">Home</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/presentations.html">Lightning talks</a>
-    </header>
     {{ content }}
 
     <div id="disqus_thread"></div>
@@ -37,5 +28,4 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
-  </body>
-</html>
+</article>

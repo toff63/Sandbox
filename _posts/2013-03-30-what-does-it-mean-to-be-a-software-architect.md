@@ -5,10 +5,6 @@ layout: post
 title: What does it mean to be a software architect
 ---
 
-#What does it mean to be a software architect?
-
-Written 30-03-2013
-
 This is the first question I had to answer starting this quest: becoming a software architect. I started reading the book [Software Architect Bootcamp](http://www.goodreads.com/book/show/2827735-software-architect-bootcam "Software Architect Bootcamp") to be able to answer this question. What follows is my own understanding and I would recommand to read books and articles about it as there is no clear definition.
 
 ##Creates software architectures

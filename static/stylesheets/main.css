@@ -29,12 +29,13 @@ a h2{
 	color: black;
 }
 
-p a{
+a{
 	color: grey;
 }
 
-p a:hover{
-	background-color: blue;
+a:hover{
+	background-color: black;
+  color: white;
 }
 
 header{
