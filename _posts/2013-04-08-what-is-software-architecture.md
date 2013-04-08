@@ -18,3 +18,7 @@ It doesn't mean that development won't have any technical challenge. However the
 ##Architecture evolution
 
 Architecutre will be developped before development team start working on the project. Once the developent team start using the architecture, evolution cannot break the software, neither consume too much time for developper team to migrate from one architecture version to another. However, architecture isn't frozen and needs to evolve to attend future needs and be up-to-date with new technologies otherwise the whole application might not keep up with concurrent products. Failing on this means having to re-build the application based on a branding new architecture. This is an extremly expensive solution that can break the company. 
+
+
+##Conclusion
+Architecture success is critical for the success of the project. That's why software architect always need to be discussing with developpers to validate that complexity is well handled, as well as discussing with infrastructure people to run some stress tests and be sure that non functional requirements are attended.
