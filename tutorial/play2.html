@@ -40,7 +40,7 @@ In order to develop your application in eclipse I strongly suggest to download t
 <h2 id="controller">Blog Controller</h2>
 <p>Let's add our first action. In <code>app/controllers/Application.scala</code>, we are going to add a new scala Object inheriting from Controller with an action to display a Post. </p>
 
-{% highlight language lineos=table %}
+{% highlight scala lineos %}
 package controllers
 
 import play.api._
@@ -65,7 +65,8 @@ object Blog extends Controller {
 Our <code>post</code> action receives the post id and return response with HTTP code 200 and the text.</p>
 <p>
 We now need to define a route to this action in the <code>conf/routes</code> file.</p>
-<pre>
+
+{% highlight scala lineos %}
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
@@ -77,7 +78,8 @@ GET     /post/:id	            controllers.Blog.post(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
-</pre>
+{% endhighlight %}
+
 <p>
 You can run in the terminal/console <code>play ~run</code>. The "~" in front will force to recompile the code after at each refresh in the browser so you don't have to stop the server to get your changes. Now you can go to <a href="htpp://localhost:9000/post/5">http://localhost:9000/post/5</a> and should see the message defined in your action.</p>
 <p>Your project should now looks like this: <a href="https://github.com/toff63/playTutoial/tree/885cf340c02ec8820a8b1ff414fc099b21bd47ad">Github project after controller creation</a>.</p>
