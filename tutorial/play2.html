@@ -40,7 +40,7 @@ In order to develop your application in eclipse I strongly suggest to download t
 <h2 id="controller">Blog Controller</h2>
 <p>Let's add our first action. In <code>app/controllers/Application.scala</code>, we are going to add a new scala Object inheriting from Controller with an action to display a Post. </p>
 
-<pre>
+{highlight language lineos=table %}
 package controllers
 
 import play.api._
@@ -59,7 +59,7 @@ object Blog extends Controller {
         Ok("This is a fake post with id: " + id)
     }
 }
-</pre>
+{endhighlight language}
 
 <p>
 Our <code>post</code> action receives the post id and return response with HTTP code 200 and the text.</p>
