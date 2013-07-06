@@ -38,7 +38,7 @@ layout: default
 In order to develop your application in eclipse I strongly suggest to download the last <a href="http://scala-ide.org/download/sdk.html">scala ide release</a>. Once installed, go in Help -> Install New Software. Select the Scala ide site. A list of plugins should appear. Select Play2 to install. Once you are done, import play2 project as an Existing Project into the workspace.</p>
 
 <h2 id="controller">Blog Controller</h2>
-<p>Let's add our first action. In Application.scala, we are going to add a new scala Object inheriting from Controller with an action to display a Post. </p>
+<p>Let's add our first action. In <code>app/controllers/Application.scala</code>, we are going to add a new scala Object inheriting from Controller with an action to display a Post. </p>
 
 <pre>
 package controllers
@@ -61,7 +61,8 @@ object Blog extends Controller {
 }
 </pre>
 
-Our <code>post</code> action receives the post id and return response with HTTP code 200 and the text.
+<p>
+Our <code>post</code> action receives the post id and return response with HTTP code 200 and the text.</p>
 
 We now need to define a route to this action in the <code>conf/routes</code> file.
 <pre>
