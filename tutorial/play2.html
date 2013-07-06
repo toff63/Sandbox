@@ -61,7 +61,7 @@ object Blog extends Controller {
 }
 </pre>
 
-Our <code>post<code> action receives the post id and return response with HTTP code 200 and the text.
+Our <code>post</code> action receives the post id and return response with HTTP code 200 and the text.
 
 We now need to define a route to this action in the <code>conf/routes</code> file.
 <pre>
@@ -78,4 +78,4 @@ We now need to define a route to this action in the <code>conf/routes</code> fil
 	GET     /assets/*file               controllers.Assets.at(path="/public", file)
 </pre>
 
-You can run in the terminal/console <code>play ~run</run>. The "~" in front will force to recompile the code after at each refresh in the browser so you don't have to stop the server to get your changes. Now you can go to http://localhost:9000/post/5 and should see the message defined in your action.
+You can run in the terminal/console <code>play ~run</code>. The "~" in front will force to recompile the code after at each refresh in the browser so you don't have to stop the server to get your changes. Now you can go to http://localhost:9000/post/5 and should see the message defined in your action.
