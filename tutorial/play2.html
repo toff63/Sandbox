@@ -4,9 +4,10 @@ layout: default
 
 <h1>Let's right a simple blog application using play framework 2</h1>
 
+<header>
 <nav>
 <ol>
-	<li>Install play framewok</li>
+	<li<a href="#install">Install play framewok<</a>/li>
 	<li>create a new project playTutorial</li>
 	<li>Create our first Post Controller</li>
 	<li>Create a view showing a Post</li>
@@ -15,5 +16,17 @@ layout: default
 	<li>Add data coming from a web service asynchronously</li>
 </ol>
 </nav>
+</header>
 
-<h2>Install play framewok</h2>
+<h2 id="install">Install play framewok</h2>
+<p>You can have a look at the <a href="http://www.playframework.com/documentation/2.1.x/Installing">official page</a> for installing play. However you will need to have java 6 or later installed on you conputer. </p>
+<ol>
+	<li>Download the last play version <a href="http://www.playframework.org/download">here</a></li>
+	<li>Unzip it in a directory where you have the right to read and write (somhewer in your home directory should be fine)</li>
+	<li>Add the bin directory from play to your PATH environment variable</li>
+	<li>You should now be able to open a command console or terminal and tyep "play" or "play.bat" on windows</li>
+	<li>Go to the directory where you want to create your project and write the command "play new play2Tutorial"</li>
+	<li>The last command will ask you the name of the application and the programming language you want to use. I chose Scala as programming language.</li>
+	<li>Go into the project directory and write play eclipse to generate an eclipse project</li>
+</ol>
+In order to develop your application in eclipse I strongly suggest to download the last <a href="http://scala-ide.org/download/sdk.html">scala ide release</a>. Once installed, go in Help -> Install New Software. Select the Scala ide site. A list of plugins should appear. Select Play2 to install. Once you are done, import play2 project as an Existing Project into the workspace.
