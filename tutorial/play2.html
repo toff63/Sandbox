@@ -9,7 +9,7 @@ layout: default
 <ol>
 	<li><a href="#install">Install play framewok</a></li>
 	<li><a href="#new-project">create a new project playTutorial</a></li>
-	<li>Create our first Post Controller</li>
+	<li>Create our first Blog Controller</li>
 	<li>Create a view showing a Post</li>
 	<li>Add database connection</li>
 	<li>Add real time comment with Websocket</li>
@@ -36,3 +36,46 @@ layout: default
 </ol>
 <p>
 In order to develop your application in eclipse I strongly suggest to download the last <a href="http://scala-ide.org/download/sdk.html">scala ide release</a>. Once installed, go in Help -> Install New Software. Select the Scala ide site. A list of plugins should appear. Select Play2 to install. Once you are done, import play2 project as an Existing Project into the workspace.</p>
+
+<h2 id="controller">Blog Controller</h2>
+<p>Let's add our first action. In Application.scala, we are going to add a new scala Object inheriting from Controller with an action to display a Post. </p>
+
+<code>
+package controllers
+
+import play.api._
+import play.api.mvc._
+
+object Application extends Controller {
+
+    def index = Action {
+        Ok(views.html.index("Your new application is ready."))
+    }
+}
+
+object Blog extends Controller {
+		  
+    def post(id: Integer) = Action{
+        Ok("This is a fake post with id: " + id)
+    }
+}
+</code>
+
+Our <code>post<code> action receives the post id and return response with HTTP code 200 and the text.
+
+We now need to define a route to this action in the <code>conf/routes</code> file.
+<code>
+	# Routes
+	# This file defines all application routes (Higher priority routes first)
+	# ~~~~
+
+	# Home page
+	GET     /                           controllers.Application.index
+
+	GET     /post/:id					controllers.Blog.post(id: Integer)
+
+	# Map static resources from the /public folder to the /assets URL path
+	GET     /assets/*file               controllers.Assets.at(path="/public", file)
+<code>
+
+You can run in the terminal/console <code>play ~run</run>. The "~" in front will force to recompile the code after at each refresh in the browser so you don't have to stop the server to get your changes. Now you can go to http://localhost:9000/post/5 and should see the message defined in your action.
