@@ -2,14 +2,14 @@ package net.francesbagual.osgi.osgi_hello_world_client;
 
 import java.lang.reflect.Method;
 
-import net.francesbagual.osgi.helloworld.api.Messager;
+import net.francesbagual.osgi.helloworld.api.MessagerService;
 
 
 public class MessagerClient {
 
-	private Messager messager;
+	private MessagerService messager;
 
-	public MessagerClient(Messager messager){
+	public MessagerClient(MessagerService messager){
 		this.messager = messager;
 	}
 
