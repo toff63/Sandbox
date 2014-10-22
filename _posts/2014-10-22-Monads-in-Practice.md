@@ -7,7 +7,7 @@ title: Monads in Practice
 
 I gave a lecture Saturday 18 of October 2014 at [The developer conference](http://thedevelopersconference.com.br/) about Monads and how to create your own. 
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/40441891" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/toff63/monads-in-practice" title="Monads in practice" target="_blank">Monads in practice</a> </strong> from <strong><a href="//www.slideshare.net/toff63" target="_blank">Christophe Marchal</a></strong> </div>
+<iframe src="//www.slideshare.net/slideshow/embed_code/40441891" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/toff63/monads-in-practice" title="Monads in practice" target="_blank">Monads in practice</a> </strong> from <strong><a href="//www.slideshare.net/toff63" target="_blank">Christophe Marchal</a></strong> </div>
 
 #Disclaimer
 
