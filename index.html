@@ -4,9 +4,10 @@ layout: default
 <header>
 <h1>Francês bagual</h1>
 </header>
-<p>I am a French living in Porto Alegre (Brazil). I love creating new stuff, hacking, funcional programming, cutting edge technologies and playing games like Starcraft II and Splinter Cell. I share here ideas about design and technologies 
+<p>I am a French living in Porto Alegre (Brazil). I love creating new stuff, hacking, funcional programming, cutting edge technologies and playing games like Starcraft II and Splinter Cell.I will share here ideas about design and technologies 
 </p>
 
+<ul>
 {% for post in site.posts %}
 
 <li><span>{{post.date | date_to_string }}</span> <a href="{{ post.url }}">{{ post.title }}</a></li>
