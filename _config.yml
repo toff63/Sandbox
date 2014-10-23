@@ -1,4 +1,4 @@
 safe: true
 markdown: rdiscount
-pygments: true
+highlighter: pygments
 lsi: false
