@@ -3,15 +3,18 @@ layout: default
 comments: true
 ---
 
-<article>
+<article itemscope itemType="http://schema.org/BlogPosting">
+  <meta itemprop="inLanguage" content="en-US"/>
   <header>
-    <h1><a href="{{ page.url }}" rel="bookmark" title="Permanent link to " >{{ page.title }}</a></h1>
+      <h1><a itemprop="url" href="{{ page.url }}" rel="bookmark" title="Permanent link to " ><span itemprop="headline">{{ page.title }}</span></a></h1>
     <h5>
-      <time>{{ page.date | date: '%B' }} {{ page.date | date: '%e' }} {{ page.date | date: '%Y' }}</time> - <author>Christophe Marchal</author>
+        <time itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B' }} {{ page.date | date: '%e' }} {{ page.date | date: '%Y' }}</time> - 
+        <span itemprop="author"><span  itemscope itemtype="http://schema.org/Person"><author itemprop="name">Christophe Marchal</author></span></span>
     </h5>
   </header>
-
-    {{ content }}
+    <div itemprop="articleBody">
+        {{ content }}
+    </div>
 
     <div id="disqus_thread"></div>
     <script type="text/javascript">
