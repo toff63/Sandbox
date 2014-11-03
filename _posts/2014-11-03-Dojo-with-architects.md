@@ -20,8 +20,8 @@ The idea is that everybody study everything, but ultimately focusing on the subj
 
 # During the dojo
 
-I asked for everyone to start drawing some mind map showing the kind of requirements we should expect in such a system, problems that will probably raise from those requirements and  kind of architecture that could handle those problems. We spent 25 minutes on this activity.
-Then, one by one, we exposed our mind map to others and started to discuss. The main value of this exercise is the discussion as they usually have a very high quality. We ended discussing on:
+I asked for everyone to start drawing some *mind map* showing the kind of requirements we should expect in such a system, problems that will probably raise from those requirements and  kind of architecture that could handle those problems. We spent 25 minutes on this activity.
+Then, one by one, we exposed our mind map to others and started to discuss. The main value of this exercise is the *discussion* as they usually have a very high quality. We ended discussing on:
 
 * form of data input
 * possible review process
@@ -38,4 +38,4 @@ At the end we started to build a mind map without linking the subjects as this c
 
 # Conclusion
 
-It was fun and generated a lot of interesting dicussions. We are now better prepared to work with data driven system and got some practice on extracting concepts based on the nature of a problem.
+It was fun and generated a lot of interesting dicussions. We are now better prepared to work with data driven system and got some practice on extracting *concepts* based on the nature of a problem.
