@@ -3,3 +3,5 @@ XPTeam
 *.swp
 keys.txt
 *.beam
+_site
+*.swp

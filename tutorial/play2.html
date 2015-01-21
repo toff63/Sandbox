@@ -1,0 +1,85 @@
+---
+layout: default
+---
+
+<h1>Let's right a simple blog application using play framework 2</h1>
+
+<header>
+<nav>
+<ol>
+	<li><a href="#install">Install play framewok</a></li>
+	<li><a href="#new-project">create a new project playTutorial</a></li>
+	<li><a href="#controller">Create our first Blog Controller</a></li>
+	<li>Create a view showing a Post</li>
+	<li>Add database connection</li>
+	<li>Add real time comment with Websocket</li>
+	<li>Add data coming from a web service asynchronously</li>
+</ol>
+</nav>
+</header>
+
+<h2 id="install">Install play framewok</h2>
+<p>You can have a look at the <a href="http://www.playframework.com/documentation/2.1.x/Installing">official page</a> for installing play. However you will need to have java 6 or later installed on you conputer. </p>
+<ol>
+	<li>Download the last play version <a href="http://www.playframework.org/download">here</a></li>
+	<li>Unzip it in a directory where you have the right to read and write (somhewer in your home directory should be fine)</li>
+	<li>Add the bin directory from play to your PATH environment variable</li>
+	<li>You should now be able to open a command console or terminal and tyep <code>play</code> or <code>play.bat</code> on windows</li>
+</ol>
+
+<h2 id="new-project">Create a new project</h2>
+<p>Creating a new project is straightforward. You just need to follow the follwing steps</p>
+<ol>
+	<li>Go to the directory where you want to create your project and write the command <code>play new play2Tutorial</code></li>
+	<li>The last command will ask you the name of the application and the programming language you want to use. I chose Scala as programming language.</li>
+	<li>Go into the project directory and write play eclipse to generate an eclipse project</li>
+</ol>
+<p>
+In order to develop your application in eclipse I strongly suggest to download the last <a href="http://scala-ide.org/download/sdk.html">scala ide release</a>. Once installed, go in Help -> Install New Software. Select the Scala ide site. A list of plugins should appear. Select Play2 to install. Once you are done, import play2 project as an Existing Project into the workspace.</p>
+
+<h2 id="controller">Blog Controller</h2>
+<p>Let's add our first action. In <code>app/controllers/Application.scala</code>, we are going to add a new scala Object inheriting from Controller with an action to display a Post. </p>
+
+{% highlight scala lineos %}
+package controllers
+
+import play.api._
+import play.api.mvc._
+
+object Application extends Controller {
+
+    def index = Action {
+        Ok(views.html.index("Your new application is ready."))
+    }
+}
+
+object Blog extends Controller {
+		  
+    def post(id: Integer) = Action{
+        Ok("This is a fake post with id: " + id)
+    }
+}
+{% endhighlight %}
+
+<p>
+Our <code>post</code> action receives the post id and return response with HTTP code 200 and the text.</p>
+<p>
+We now need to define a route to this action in the <code>conf/routes</code> file.</p>
+
+{% highlight scala lineos %}
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+GET     /post/:id	            controllers.Blog.post(id: Integer)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+{% endhighlight %}
+
+<p>
+You can run in the terminal/console <code>play ~run</code>. The "~" in front will force to recompile the code after at each refresh in the browser so you don't have to stop the server to get your changes. Now you can go to <a href="htpp://localhost:9000/post/5">http://localhost:9000/post/5</a> and should see the message defined in your action.</p>
+<p>Your project should now looks like this: <a href="https://github.com/toff63/playTutoial/tree/885cf340c02ec8820a8b1ff414fc099b21bd47ad">Github project after controller creation</a>.</p>
