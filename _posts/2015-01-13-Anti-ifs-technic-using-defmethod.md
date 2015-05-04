@@ -24,6 +24,14 @@ Hence we declared a multimethod:
 (defmulti calculate (fn [product] (product :type)))
 {% endhighlight %}
 
+which is equivalent to 
+
+{% highlight clojure %}
+(defmulti calculate :type)
+{% endhighlight %}
+
+as Val Waeselynck mentionned in the comment.
+
 Then we wrote a function for all cases we wanted to handle: if type is 0 we need to return 0.0:
 
 {% highlight clojure %}
