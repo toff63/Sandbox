@@ -1,1 +1,70 @@
 I am Christophe Marchal
+
+==================================================================
+https://keybase.io/christophemarcha
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://francesbagual.net
+  * I am christophemarcha (https://keybase.io/christophemarcha) on keybase.
+  * I have a public key with fingerprint 6E27 B1FB C06C 0920 AF4C  D193 142E 7701 646C C913
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "6e27b1fbc06c0920af4cd193142e7701646cc913",
+            "host": "keybase.io",
+            "key_id": "142e7701646cc913",
+            "kid": "0101afb11e0f99da81a8b47162ccb538e5f60b93616f89fb0960a061741ecb3a9a060a",
+            "uid": "9f547efeb3e16b4756c0b912ac1d5a19",
+            "username": "christophemarcha"
+        },
+        "service": {
+            "hostname": "francesbagual.net",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1436536384,
+    "expire_in": 157680000,
+    "prev": "8b3be1c6a8bb407dbbf3b767481129a643dfe459bee2c32bec64cca71ea16c98",
+    "seqno": 8,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.20
+Comment: https://keybase.io/crypto
+
+yMIlAnicbZJbSBVBGMfP0cwyjEQqMgldUxC87OxldvdEIRFkD4k+dHkQTjOzs55N
+3V337NFjKkg3EvQhwZfKIukC0Y20m1CWhUQXQSEOURAmJaaQRZRRYLNib83L8H3f
+//t9F76n6cmBtOBa89mm+FRrKPji8e5YYM+50bIWDtt6Mxdq4Wrp4meYVg11Hde0
+PC7EQSooGBiY8JDwmsAjQyI60EQgCVRReAAlSIgGRK6Ii9hRP4NhMIrSEtNmPmaE
+TZ15/6OvXQzwgAfIwABQ3tA0HakAqVhSABQIwbKoUtmAPNZECKChagbmNcgjHgJF
+ApRgEWnM4BHDxRZxmiFLCjUoFimAjCOztrEGBESALiOg+cIodS1UT5maRFwz6tlO
+hNYjl0QQ11bEsWijSai/Cn+iJaXhIovQKEY1MVRXYlGPgRzX9mxi17FwxPOckJ/t
+NTu+vIni8BIojE1LZztlCY3UjZq2xYUAUxLP9MlAEqEsQlGVijgad0yXhk1fIStQ
+5dnzy9BGhlSxiCkgkK0HS7yiY2yIWIGKpAIgaAhKom5QSdYwpQIRBUwJlAhBCqAI
+QKKpnD9ag2VzIZW1iWoYMmrWWMiLuZRrG35UvSwQTAssT0nyryKQtnLNv1vpv5C6
+4BQXzs/FTqz/Xt6dPx3I39G7Kv3KXNexr3NDw4PG+8/hpqmzJ5yDFyvvVo2/flhQ
+2NEOmzsnQXKmeODM3vM/D21tdi4no9J1lwK9sQfzWT1X817KiamG2S/Fr35kN410
+9B1PjMy8KSgNZn8bM8sD17NWbEi99TZp9Y197wYGumh15e9eMDW9J3/iwvTkkXDF
+tR793otgRmfT2GTuhoXJD4eHhse7ErtOVz2PH+3I+lNRTJLzRzd2Zs6UvMqdELbk
+HUp0j/5q8ZST24Scj32pd1rL3PSGjKR5a9Ng9pOczacSn1IqxhvKv85uJ/HX2bc3
+3uwvt+I79xuN9/cebM1rj/Vd/Av0ZC3a
+=dFbq
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/christophemarcha
+
+==================================================================
+
