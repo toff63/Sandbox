@@ -14,9 +14,11 @@ Performance is a critical part of a system as it impacts the user experience. It
 ### Understanding the problem
 
 This is the very first step. You need to talk with people complaining about performance to understand their expectations and since when it is happenning. You should ask questions like:
+
 * When did it start happening?
 * What are the symptoms?
 * What recently changed?
+
 and any other question that can help you understand and reproduce the issue.
 
 ### Collecting facts
@@ -25,10 +27,10 @@ and any other question that can help you understand and reproduce the issue.
 
 This methods force you to ask the right questions which can help you to understand what is happenning.
 
-1.Who is causing the workload? PID, UID, IP, ...
-2.Why is the load called? Code path, stack trace, ...
-3.What is the load? IOPS, tps, r/w, ...
-4.How is the load changing over time?
+1. Who is causing the workload? PID, UID, IP, ...
+2. Why is the load called? Code path, stack trace, ...
+3. What is the load? IOPS, tps, r/w, ...
+4. How is the load changing over time?
 
 #### The Utilization Saturation and Error Method: [USE Method](http://www.brendangregg.com/usemethod.html)
 
