@@ -2,26 +2,20 @@ package rs.jug.rx.resultset.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Supplier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
+import rs.jug.rx.resultset.dao.function.CallDatabaseFunction;
+import rs.jug.rx.resultset.dao.function.CustomerResultSetExtractor;
+import rs.jug.rx.resultset.dao.function.ReleaseConnectionFunction;
+import rs.jug.rx.resultset.dao.function.ResultsetObserverFunction;
 import rx.Observable;
-import rx.Observer;
-import rx.functions.Func3;
-import rx.functions.Action1;
-import rx.functions.Action3;
-import rx.functions.Func0;
 import rx.observables.AsyncOnSubscribe;
 
 public class ReactiveCustomerDAO implements CustomerDAO {
@@ -32,46 +26,28 @@ public class ReactiveCustomerDAO implements CustomerDAO {
 	public ReactiveCustomerDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
 
-
-	@Override
-	public void queryDatabase() {
-		log.info("Querying for customer records where first_name = 'Josh':");
+	private Observable<Customer> doQueryDatabase(String sql, ResultSetExtractor<Customer> extractor) {
 		Connection con = DataSourceUtils.getConnection(jdbcTemplate.getDataSource());
 		try {
-			PreparedStatement statement = con
-					.prepareStatement("SELECT id, first_name, last_name FROM customers WHERE first_name = 'Josh'");
-			Observable.create(AsyncOnSubscribe.createStateful(new Func0<ResultSet>() {
-				public ResultSet call() {
-					try {
-						return statement.executeQuery();
-					} catch (SQLException e) {
-						throw new RuntimeException("Failed to query database to find Josh", e);
-					}
-				}
-			}, new Func3<ResultSet, Long, Observer<Observable<? extends Customer>>, ResultSet>() {
-				public ResultSet call(ResultSet resultSet, Long requested, Observer<Observable<? extends Customer>> observer) {
-					long retrievedResults = 0;
-					try {
-						while (resultSet.next() && retrievedResults <= requested) {
-							observer.onNext(Observable.just(new Customer(resultSet.getLong("id"),
-									resultSet.getString("first_name"), resultSet.getString("last_name"))));
-						}
-						return resultSet;
-					} catch (SQLException e) {
-						throw new RuntimeException("Failed to retrieve results from database", e);
-					}
-				}
-			}, new Action1<ResultSet>() {
-				public void call(ResultSet t) {
-					DataSourceUtils.releaseConnection(con, jdbcTemplate.getDataSource());
-				}
-			})).subscribe(customer -> log.info(customer.toString()));
+			PreparedStatement statement = con.prepareStatement(sql);
+			return Observable
+					.create(AsyncOnSubscribe.createStateful(new CallDatabaseFunction(statement),
+							new ResultsetObserverFunction<Customer>(extractor),
+							new ReleaseConnectionFunction(con, jdbcTemplate.getDataSource())));
 		} catch (SQLException e) {
 			DataSourceUtils.releaseConnection(con, jdbcTemplate.getDataSource());
 			throw new RuntimeException("Couldn't create statement", e);
 		}
+	}
+
+	@Override
+	public void queryDatabase() {
+		log.info("Querying for customer records where first_name = 'Josh':");
+		Observable<Customer> customers = 
+				doQueryDatabase("SELECT id, first_name, last_name FROM customers WHERE first_name = 'Josh'", 
+				new CustomerResultSetExtractor());
+		customers.subscribe(customer -> log.info(customer.toString()));
 	}
 
 	@Override
