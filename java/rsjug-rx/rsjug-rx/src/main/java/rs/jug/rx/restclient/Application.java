@@ -1,6 +1,11 @@
 package rs.jug.rx.restclient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.asynchttpclient.ListenableFuture;
 import org.slf4j.Logger;
@@ -26,15 +31,38 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		runAsynchronouslyRx();
-		runAsynchronously();
+		get5QuotesRx();
 	}
 
+	private void get5QuotesRx(){
+		List<Observable<Quote>> observables = 
+			IntStream.range(0, 5)
+			         .mapToObj(i -> Observable.from(restGateway.getQuote()))
+			         .collect(Collectors.toList());
+		Observable.from(observables)
+		          .doOnError(t -> handleErrors(t))
+		          .subscribe(quote -> log.info(quote.toString()));
+	}
+	
+	private void get5QuotesAsync(){
+		List<ListenableFuture<Quote>> futureQuotes = 
+			IntStream.range(0, 5)
+			         .mapToObj(i -> restGateway.getQuote())
+			         .collect(Collectors.toList());
+		for(ListenableFuture<Quote> futureQuote: futureQuotes){
+			try {
+				log.info(futureQuote.get().toString());
+			} catch (InterruptedException | ExecutionException e) {
+				handleErrors(e);
+			}
+		}
+	}
+	
 	private void runAsynchronouslyRx() {
 		ListenableFuture<Quote> f = restGateway.getQuote();
-		Observable<Quote> quoteStream = Observable.from(f)
-				                                  .doOnError(t -> handleErrors(t));
-		quoteStream.subscribe(quote -> log.info(quote.toString()));
+		Observable.from(f)
+                  .doOnError(t -> handleErrors(t))
+                  .subscribe(quote -> log.info(quote.toString()));
 	}
 
 	private void runAsynchronously() {

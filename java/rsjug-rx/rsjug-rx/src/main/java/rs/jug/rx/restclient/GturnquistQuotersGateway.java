@@ -1,5 +1,7 @@
 package rs.jug.rx.restclient;
 
+import java.util.Random;
+
 import org.asynchttpclient.AsyncCompletionHandler;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClient;
@@ -13,6 +15,7 @@ public class GturnquistQuotersGateway implements DisposableBean {
 
 	private static AsyncHttpClient asyncHttpClient = new DefaultAsyncHttpClient();
 	private JsonReader reader;
+	private Random random = new Random();
 
 	public GturnquistQuotersGateway(JsonReader reader) {
 		this.reader = reader;
