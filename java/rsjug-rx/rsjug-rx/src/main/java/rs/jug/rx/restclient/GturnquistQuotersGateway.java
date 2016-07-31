@@ -1,8 +1,5 @@
 package rs.jug.rx.restclient;
 
-import java.io.Closeable;
-import java.io.IOException;
-
 import org.asynchttpclient.AsyncCompletionHandler;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClient;
