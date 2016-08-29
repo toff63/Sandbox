@@ -1,13 +1,15 @@
 package rs.jug.rx.restclient;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
-import org.asynchttpclient.ListenableFuture;
+import org.apache.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,33 +27,48 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private GturnquistQuotersGateway restGateway ;
+	
+	@Autowired
+	private JsonReader jsonReader;
+	
 	public static void main(String args[]) {
 		SpringApplication.run(Application.class);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		runAsynchronously();
+		runAsynchronouslyRx();
 		get5QuotesRx();
+		get5QuotesAsync();
 	}
 
 	private void get5QuotesRx(){
-		List<Observable<Quote>> observables = 
-			IntStream.range(0, 5)
-			         .mapToObj(i -> Observable.from(restGateway.getQuote()))
-			         .collect(Collectors.toList());
-		Observable.from(observables)
-		          .doOnError(t -> handleErrors(t))
-		          .subscribe(quote -> log.info(quote.toString()));
+		Observable.just(1, 2, 3, 4, 5)
+				  .flatMap(i -> Observable.from(restGateway.getQuote()))
+				  .map(response -> jsonReader.read(content(response)))
+				  .onErrorReturn(t -> new Quote())
+				  .map(Quote::toString)
+				  .subscribe(log::info);
+	}
+	
+	private InputStream content(HttpResponse response){
+		try {
+			return response.getEntity().getContent();
+		} catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
 	
 	private void get5QuotesAsync(){
-		List<ListenableFuture<Quote>> futureQuotes = 
+		List<Future<HttpResponse>> futureQuotes = 
 			IntStream.range(0, 5)
 			         .mapToObj(i -> restGateway.getQuote())
 			         .collect(Collectors.toList());
-		for(ListenableFuture<Quote> futureQuote: futureQuotes){
+		for(Future<HttpResponse> futureQuote: futureQuotes){
 			try {
-				log.info(futureQuote.get().toString());
+				HttpResponse response = futureQuote.get();
+				log.info(jsonReader.read(content(response)).toString());
 			} catch (InterruptedException | ExecutionException e) {
 				handleErrors(e);
 			}
@@ -59,16 +76,17 @@ public class Application implements CommandLineRunner {
 	}
 	
 	private void runAsynchronouslyRx() {
-		ListenableFuture<Quote> f = restGateway.getQuote();
-		Observable.from(f)
+		Observable.from(restGateway.getQuote())
+		          .map(response -> jsonReader.read(content(response)))
                   .doOnError(t -> handleErrors(t))
-                  .subscribe(quote -> log.info(quote.toString()));
+				  .map(Quote::toString)
+				  .subscribe(log::info);
 	}
 
 	private void runAsynchronously() {
 		try {
-			ListenableFuture<Quote> f = restGateway.getQuote();
-			log.info(f.get().toString());
+			HttpResponse response = restGateway.getQuote().get();
+			log.info(jsonReader.read(content(response)).toString());
 		} catch (InterruptedException | ExecutionException e) {
 			handleErrors(e);
 		}

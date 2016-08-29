@@ -1,40 +1,33 @@
 package rs.jug.rx.restclient;
 
 import java.util.Random;
+import java.util.concurrent.Future;
 
-import org.asynchttpclient.AsyncCompletionHandler;
-import org.asynchttpclient.AsyncHttpClient;
-import org.asynchttpclient.DefaultAsyncHttpClient;
-import org.asynchttpclient.ListenableFuture;
-import org.asynchttpclient.Response;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.springframework.beans.factory.DisposableBean;
 
-import rs.jug.rx.restclient.contract.Quote;
 
 public class GturnquistQuotersGateway implements DisposableBean {
 
-	private static AsyncHttpClient asyncHttpClient = new DefaultAsyncHttpClient();
-	private JsonReader reader;
-	private Random random = new Random();
+	private static CloseableHttpAsyncClient httpclient = HttpAsyncClients.createDefault();
 
-	public GturnquistQuotersGateway(JsonReader reader) {
-		this.reader = reader;
+
+	public GturnquistQuotersGateway() {
+		httpclient.start();
 	}
 
-	public ListenableFuture<Quote> getQuote() {
-		return asyncHttpClient.prepareGet("http://gturnquist-quoters.cfapps.io/api/random")
-				.execute(new AsyncCompletionHandler<Quote>() {
-
-					@Override
-					public Quote onCompleted(Response response) throws Exception {
-						return reader.read(response.getResponseBodyAsStream());
-					}
-				});
+	public Future<HttpResponse> getQuote() {
+		final HttpGet request1 = new HttpGet("http://gturnquist-quoters.cfapps.io/api/random");
+		return httpclient.execute(request1, null);
 	}
 
 	@Override
 	public void destroy() throws Exception {
-		asyncHttpClient.close();
+		httpclient.close();
 	}
 
 }

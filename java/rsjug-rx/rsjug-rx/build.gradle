@@ -40,10 +40,11 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'io.reactivex:rxjava:1.1.8'
 	compile 'com.h2database:h2:1.4.192'
-	compile("org.springframework:spring-jdbc")
-    compile("org.springframework.boot:spring-boot-starter")
-	compile("com.fasterxml.jackson.core:jackson-databind")
-	compile("org.asynchttpclient:async-http-client:2.0.11")
+	compile "org.springframework:spring-jdbc"
+    compile "org.springframework.boot:spring-boot-starter"
+	compile "com.fasterxml.jackson.core:jackson-databind"
+    compile 'org.apache.httpcomponents:httpasyncclient:4.1.2'
+	compile "io.reactivex:rxnetty:0.4.18"
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add

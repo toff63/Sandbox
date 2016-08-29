@@ -8,7 +8,7 @@ public class RestClientModule {
 
 	@Bean
 	public GturnquistQuotersGateway restGateway(){
-		return new GturnquistQuotersGateway(jsonReader());
+		return new GturnquistQuotersGateway();
 	}
 	
 	@Bean
