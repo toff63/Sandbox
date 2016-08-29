@@ -19,7 +19,7 @@ public class ReactiveHttpRequestHandler {
 	private VideoServiceGateway videoServiceGateway = new VideoServiceGateway();
 	public Observable<Void> handle(HttpServerRequest<ByteBuf> request, HttpServerResponse<ByteBuf> response) {
 		// first request User object
-		return getUser(request.getQueryParameters().get("userId")).flatMap(user -> {
+		return getUser(userId(request)).flatMap(user -> {
 			// then fetch personal catalog
 			Observable<Map<String, Object>> catalog = getPersonalizedCatalog(user).flatMap(catalogList -> {
 				return catalogList.videos().<Map<String, Object>>flatMap(video -> {
@@ -40,6 +40,10 @@ public class ReactiveHttpRequestHandler {
 			// output as SSE as we get back the data (no waiting until all is done)
 			return response.writeAndFlush(new ServerSentEvent(toByteBuffer(data)).content());
 		});
+	}
+
+	private List<String> userId(HttpServerRequest<ByteBuf> request) {
+		return request.getQueryParameters().get("userId");
 	}
 	
 	private Map<String, Object>combineVideoData(String video, Rating rating, VideoMetadata metadata){
