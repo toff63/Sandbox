@@ -37,6 +37,7 @@ public class Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		runAsynchronously();
 		runAsynchronouslyRx();
+		runAsynchronouslyFallbackRx();
 		get5QuotesRx();
 		get5QuotesAsync();
 	}
@@ -77,6 +78,14 @@ public class Application implements CommandLineRunner {
 		Observable.from(restGateway.getQuote())
 		.map(response -> jsonReader.read(content(response)))
 		.doOnError(t -> handleErrors(t))
+		.map(Quote::toString)
+		.subscribe(log::info);
+	}
+
+	private void runAsynchronouslyFallbackRx() {
+		Observable.from(restGateway.getQuote())
+		.map(response -> jsonReader.read(content(response)))
+		.onErrorReturn(t -> new Quote())
 		.map(Quote::toString)
 		.subscribe(log::info);
 	}
