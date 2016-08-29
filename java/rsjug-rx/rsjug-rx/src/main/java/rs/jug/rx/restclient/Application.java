@@ -1,8 +1,6 @@
 package rs.jug.rx.restclient;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -24,13 +22,13 @@ import rx.Observable;
 public class Application implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
-	
+
 	@Autowired
 	private GturnquistQuotersGateway restGateway ;
-	
+
 	@Autowired
 	private JsonReader jsonReader;
-	
+
 	public static void main(String args[]) {
 		SpringApplication.run(Application.class);
 	}
@@ -45,13 +43,13 @@ public class Application implements CommandLineRunner {
 
 	private void get5QuotesRx(){
 		Observable.just(1, 2, 3, 4, 5)
-				  .flatMap(i -> Observable.from(restGateway.getQuote()))
-				  .map(response -> jsonReader.read(content(response)))
-				  .onErrorReturn(t -> new Quote())
-				  .map(Quote::toString)
-				  .subscribe(log::info);
+		.flatMap(i -> Observable.from(restGateway.getQuote()))
+		.map(response -> jsonReader.read(content(response)))
+		.onErrorReturn(t -> new Quote())
+		.map(Quote::toString)
+		.subscribe(log::info);
 	}
-	
+
 	private InputStream content(HttpResponse response){
 		try {
 			return response.getEntity().getContent();
@@ -59,12 +57,12 @@ public class Application implements CommandLineRunner {
 			throw new RuntimeException(t);
 		}
 	}
-	
+
 	private void get5QuotesAsync(){
 		List<Future<HttpResponse>> futureQuotes = 
-			IntStream.range(0, 5)
-			         .mapToObj(i -> restGateway.getQuote())
-			         .collect(Collectors.toList());
+				IntStream.range(0, 5)
+				.mapToObj(i -> restGateway.getQuote())
+				.collect(Collectors.toList());
 		for(Future<HttpResponse> futureQuote: futureQuotes){
 			try {
 				HttpResponse response = futureQuote.get();
@@ -74,13 +72,13 @@ public class Application implements CommandLineRunner {
 			}
 		}
 	}
-	
+
 	private void runAsynchronouslyRx() {
 		Observable.from(restGateway.getQuote())
-		          .map(response -> jsonReader.read(content(response)))
-                  .doOnError(t -> handleErrors(t))
-				  .map(Quote::toString)
-				  .subscribe(log::info);
+		.map(response -> jsonReader.read(content(response)))
+		.doOnError(t -> handleErrors(t))
+		.map(Quote::toString)
+		.subscribe(log::info);
 	}
 
 	private void runAsynchronously() {
