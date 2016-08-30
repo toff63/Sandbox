@@ -1,7 +1,6 @@
 package rs.jug.rx.composition;
 
 import java.nio.charset.Charset;
-import java.util.List;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -20,17 +19,23 @@ import rx.Observable;
 public class SeriesHttpHandler {
 	Service service = new ServiceImpl();
 
-	public Observable<Void> handle(HttpServerRequest<ByteBuf> request, HttpServerResponse<ByteBuf> response) {
-		return serieDetailsAndSocial(Observable.from(userId(request)))
-				.flatMap(data -> response.writeAndFlush(new ServerSentEvent(toByteBuffer(data)).content()));
+	public Observable<Void> handle(
+			HttpServerRequest<ByteBuf> request, 
+			HttpServerResponse<ByteBuf> response) {
+		return serieDetailsAndSocial(userId(request))
+				.flatMap(data -> response.writeAndFlush(serverSideEvent(data)));
+	}
+
+	private ByteBuf serverSideEvent(Object data) {
+		return new ServerSentEvent(toByteBuffer(data)).content();
 	}
 
 	private ByteBuf toByteBuffer(Object data) {
 		return Unpooled.copiedBuffer(data.toString() + "\n", Charset.forName("UTF-8"));
 	}
 
-	private List<String> userId(HttpServerRequest<ByteBuf> request) {
-		return request.getQueryParameters().get("userId");
+	private Observable<String> userId(HttpServerRequest<ByteBuf> request) {
+		return Observable.from(request.getQueryParameters().get("userId"));
 	}
 
 	private Observable<Object> serieDetailsAndSocial(Observable<String> userIds) {
