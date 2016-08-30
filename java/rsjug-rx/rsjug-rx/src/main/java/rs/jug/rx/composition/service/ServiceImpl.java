@@ -1,4 +1,4 @@
-package rs.jug.rx.composition;
+package rs.jug.rx.composition.service;
 
 import java.util.HashMap;
 import java.util.Map;

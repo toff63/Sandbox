@@ -1,4 +1,4 @@
-package rs.jug.rx.composition;
+package rs.jug.rx.composition.service;
 
 import rs.jug.rx.composition.domain.Rating;
 import rs.jug.rx.composition.domain.Serie;

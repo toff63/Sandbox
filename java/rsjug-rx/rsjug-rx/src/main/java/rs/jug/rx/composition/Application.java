@@ -4,7 +4,11 @@ import rs.jug.rx.composition.domain.Rating;
 import rs.jug.rx.composition.domain.SerieMetadata;
 import rs.jug.rx.composition.domain.Social;
 import rs.jug.rx.composition.domain.User;
+import rs.jug.rx.composition.service.SerieDetails;
+import rs.jug.rx.composition.service.Service;
+import rs.jug.rx.composition.service.ServiceImpl;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 public class Application {
 
@@ -28,7 +32,9 @@ public class Application {
 			Observable<SerieDetails> series = serieDetails(user, service);
 			Observable<Social> socialInformation= service.socialInformation(user);
 			return Observable.merge(socialInformation, series);
-		}).subscribe(System.out::println);
+		})
+		.observeOn(Schedulers.io())
+		.subscribe(System.out::println);
 	}
 	
 	private static Observable<SerieDetails> serieDetails(User user, Service service) {
