@@ -15,6 +15,7 @@ import rs.jug.rx.composition.service.SerieDetails;
 import rs.jug.rx.composition.service.Service;
 import rs.jug.rx.composition.service.ServiceImpl;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 public class SeriesHttpHandler {
 	Service service = new ServiceImpl();
@@ -22,7 +23,7 @@ public class SeriesHttpHandler {
 	public Observable<Void> handle(
 			HttpServerRequest<ByteBuf> request, 
 			HttpServerResponse<ByteBuf> response) {
-		return serieDetailsAndSocial(userId(request))
+		return serieDetailsAndSocialAsync(userId(request))
 				.flatMap(data -> response.writeAndFlush(serverSideEvent(data)));
 	}
 
@@ -36,6 +37,10 @@ public class SeriesHttpHandler {
 
 	private Observable<String> userId(HttpServerRequest<ByteBuf> request) {
 		return Observable.from(request.getQueryParameters().get("userId"));
+	}
+	
+	private Observable<Object> serieDetailsAndSocialAsync(Observable<String> userIds) {
+		return serieDetailsAndSocial(userIds).subscribeOn(Schedulers.io());
 	}
 
 	private Observable<Object> serieDetailsAndSocial(Observable<String> userIds) {

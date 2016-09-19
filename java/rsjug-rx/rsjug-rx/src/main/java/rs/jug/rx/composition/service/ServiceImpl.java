@@ -13,35 +13,40 @@ import rx.Observable;
 
 public class ServiceImpl implements Service {
 
-	private Map<String, Observable<Serie>> seenFilmsByUser = new HashMap<>();
-	private Map<String, Observable<Social>> socialMetadataByUser = new HashMap<>();
+	private Map<String, Serie> seenFilmsByUser = new HashMap<>();
+	private Map<String, Social> socialMetadataByUser = new HashMap<>();
 	private Random random = new Random();
 	
 	public ServiceImpl() {
-		seenFilmsByUser.put("francesbagual", Observable.just(new Serie("Stranger Things")));		
-		seenFilmsByUser.put("rsjug", Observable.just(new Serie("Narcos")));		
-		socialMetadataByUser.put("francesbagual", Observable.just(new Social("https://www.facebook.com/christophe.marchal63")));
-		socialMetadataByUser.put("rsjug", Observable.just(new Social("https://www.facebook.com/groups/rsjug/")));
+		seenFilmsByUser.put("francesbagual", new Serie("Stranger Things"));		
+		seenFilmsByUser.put("rsjug", new Serie("Narcos"));		
+		socialMetadataByUser.put("francesbagual", new Social("https://www.facebook.com/christophe.marchal63"));
+		socialMetadataByUser.put("rsjug", new Social("https://www.facebook.com/groups/rsjug/"));
 	}
 	
 	@Override
 	public Observable<User> getUser(String userId) {
-		addLatency();
-		return Observable.just(new User(userId));
+		return toObservableWithLatency(new User(userId));
 	}
 
 	@Override
 	public Observable<Serie> seenSeries(User user) {
-		addLatency();
-		return seenFilmsByUser.get(user.id);
+		return toObservableWithLatency(seenFilmsByUser.get(user.id));
 	}
 
 	@Override
 	public Observable<Social> socialInformation(User user) {
-		addLatency();
-		return socialMetadataByUser.get(user.id);
+		return toObservableWithLatency(socialMetadataByUser.get(user.id));
 	}
 
+	private <T> Observable<T> toObservableWithLatency(T o){
+		return Observable.create(s -> {
+			addLatency();
+			s.onNext(o);
+			s.onCompleted();
+		});
+	}
+	
 	@Override
 	public Observable<Rating> rating(Serie serie) {
 		addLatency();
