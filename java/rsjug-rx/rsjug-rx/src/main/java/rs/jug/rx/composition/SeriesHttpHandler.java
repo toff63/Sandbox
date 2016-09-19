@@ -40,7 +40,11 @@ public class SeriesHttpHandler {
 	}
 	
 	private Observable<Object> serieDetailsAndSocialAsync(Observable<String> userIds) {
-		return serieDetailsAndSocial(userIds).subscribeOn(Schedulers.io());
+		return userIds.flatMap(service::getUser).flatMap(user -> {
+			Observable<SerieDetails> series = serieDetails(user).subscribeOn(Schedulers.io());
+			Observable<Social> socialInformation = service.socialInformation(user);
+			return Observable.merge(socialInformation, series).subscribeOn(Schedulers.io());
+		});
 	}
 
 	private Observable<Object> serieDetailsAndSocial(Observable<String> userIds) {
