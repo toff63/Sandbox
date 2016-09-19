@@ -32,21 +32,82 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'mpollmeier/vim-scalaConceal'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'keith/swift.vim'
+NeoBundle 'lambdatoast/elm.vim'
+NeoBundle 'pangloss/vim-javascript.git'
+NeoBundle 'nathanaelkane/vim-indent-guides.git'
+NeoBundle 'Raimondi/delimitMate.git'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'mxw/vim-jsx.git'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'vim-scripts/indentpython.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle  'nvie/vim-flake8'
 
- call neobundle#end()
+let python_highlight_all=1
+syntax on
 
- " Required:
- filetype plugin indent on
 
- " If there are uninstalled bundles found on startup,
- " this will conveniently prompt you to install them.
- NeoBundleCheck
+call neobundle#end()
 
- set laststatus=2
- let g:airline#extensions#tabline#enabled=1
- set guifont=Consolas:h11:cDEFAULT
- let g:airline_powerline_fonts=1
+" Required:
+filetype plugin indent on
 
- colorscheme wombat
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
- syntax on
+set laststatus=2
+let g:airline#extensions#tabline#enabled=1
+set guifont=Consolas:h11:cDEFAULT
+let g:airline_powerline_fonts=1
+
+colorscheme wombat
+
+syntax on
+set showmatch
+set incsearch
+set hlsearch
+
+set foldenable
+set foldmethod=indent
+
+
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing"
+set expandtab       " tabs are spaces"
+set number
+filetype indent on  "will look for indent files in .vim to indent your current file"
+"set wildmenu            " visual autocomplete for command menu"
+set lazyredraw          " redraw only when we need to."
+
+
+" syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=99 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+    \ set softtabstop=4 
+
+au BufNewFile,BufRead *.js, *.html, *.css, *.scala, *.java, *.go
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
+set encoding=utf-8
+
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
