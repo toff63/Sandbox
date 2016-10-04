@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
@@ -13,7 +14,7 @@ public class Backpressure {
 	public static void main(String[] args) {
 //		noBackPressureNeeded();
 //		backPressureNeeded();
-		blockingOperator();
+//		blockingOperator();
 //		temporalOperatorSample();
 //		temporalOperatorThrottleFirst();
 //		temporalOperatorDebounce();
@@ -21,9 +22,9 @@ public class Backpressure {
 //		temporalOperatorBufferDebounce();
 //		temporalOperatorWindowTime();
 //		temporalOperatorWindowNumber();
+//		onBackpressureBufferExample();
+		onBackpressureDropExample();
 	}
-
-
 
 	public static void noBackPressureNeeded() {
 		Observable.from(iterable()).take(1000).map(i -> i * 2).map(i -> i.toString()).subscribe(System.out::println);
@@ -107,6 +108,29 @@ public class Backpressure {
 		.window(50000)
 		.flatMap(list -> list.count())
 		.subscribe(System.out::println);
+	}
+	
+
+	private static void onBackpressureBufferExample() {
+		hotSourceStream().onBackpressureBuffer()
+		.observeOn(Schedulers.newThread())
+		.subscribe(System.out::println);
+	}
+	
+
+	private static void onBackpressureDropExample() {
+		hotSourceStream().onBackpressureDrop()
+		.observeOn(Schedulers.newThread())
+		.subscribe(System.out::println);
+	}
+
+	private static Observable<Integer> hotSourceStream() {
+		return Observable.create(subscriber -> {
+			for(int i=0;;i++){
+				subscriber.onNext(i);
+			}
+		});
+		
 	}
 
 	private static void emitEvents(Subscriber<? super Integer> subscriber, int start, int end) {
