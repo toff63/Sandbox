@@ -43,6 +43,7 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/indentpython.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle  'nvie/vim-flake8'
+NeoBundle 'syntax/signalflow.vim'
 
 let python_highlight_all=1
 syntax on
@@ -109,5 +110,5 @@ au BufNewFile,BufRead *.js, *.html, *.css, *.scala, *.java, *.go
 
 set encoding=utf-8
 
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufNewFile,BufRead *.flow set filetype=signalflow
 
