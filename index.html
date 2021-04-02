@@ -2,24 +2,31 @@
 layout: default
 ---
 <header>
-<h1>Francês bagual</h1>
+  <h1>Francês bagual</h1>
 </header>
-<p>I am a French living in Porto Alegre (Brazil). I love creating new stuff, hacking, funcional programming, cutting edge technologies and playing games like Starcraft II and Splinter Cell.I will share here ideas about design and technologies 
+<p>Welcome to my blog. I am French and used to work in Porto Alegre, Brazil. People there would call me Francês as my first name is a bit hard to pronounce for Brazilian. Bagual is a term used in south Brazil and in means "great".
 </p>
+<p>Disclaimer:<i>The opinions expressed in this blog are my own and not necessarly those of my past or current employers.</i></p>
 
-<ul>
-{% for post in site.posts %}
-
-<li><span>{{post.date | date_to_string }}</span> <a href="{{ post.url }}">{{ post.title }}</a></li>
-{% endfor %}
-
-</ul>
+<div>
+  <div>Latest blog posts</div>
+  <div class="">
+  {% for post in site.posts %}
+    <div class="card m-5 flx flex-wrap justify-center">
+      <div class="w-6/12 sm:w-4/12 px-4">
+        <img src="{{ post.img }}" class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <span>{{post.date | date_to_string }}</span> <a href="{{ post.url }}">{{ post.title }}</a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
 
 <h1>Lightning talks</h1>
 
 <div class="row">
-	  <div class="span9">
-		      <iframe src="http://www.slideshare.net/toff63/slideshelf" width="760px" height="570px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
-		        </div>
-		</div>
+  <div class="span9">
+    <iframe src="http://www.slideshare.net/toff63/slideshelf" width="760px" height="570px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+  </div>
+</div>
 

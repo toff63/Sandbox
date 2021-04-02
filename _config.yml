@@ -2,3 +2,9 @@ safe: true
 markdown: kramdown
 highlighter: rouge
 lsi: false
+
+exclude:
+  - "*.config.js"
+  - "package*.json"
+  - "assets"
+  - "node_modules"

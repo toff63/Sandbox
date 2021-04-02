@@ -17,8 +17,8 @@
 
     <title>My way to become a software architect</title>
     <link rel="alternate" href="atom.xml" title="Christophe Marchal" type="application/atom+xml" />
-    <link rel="stylesheet" media="screen" href="/static/stylesheets/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" media="screen" href="/static/stylesheets/syntax.css" media="screen">
+    <link rel="stylesheet" href="/static/stylesheets/syntax.css" media="screen">
+    <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] }}" media="screen">
     <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png">
     <link href="http://fonts.googleapis.com/css?family=La+Belle+Aurore&amp;v1" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Cabin&amp;v1" rel="stylesheet" type="text/css">				
@@ -26,42 +26,40 @@
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
   </head>
 
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+  <body class="font-body">
+    <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-green-500 mb-3">
+      <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+          <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white" href="/">
+            Francês bagual
+          </a>
+          <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
+            <span class="block relative w-6 h-px rounded-sm bg-white"></span>
+            <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+            <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
           </button>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="/index.html">Home</a></li>
-<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lightning talks <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/lt/xp.html">Extreme programming training</a></li>
-                  <li><a href="/lt/redis.html">Redis</a></li>
-                  <li><a href="/lt/slideshare.html">21 Lightning Talks</a></li>
-                </ul>
-</li>
-            </ul>
-          </div><!--/.nav-collapse -->
+        </div>
+        <div class="lg:flex flex-grow items-center" id="example-navbar-warning">
+          <ul class="flex flex-col lg:flex-row list-none ml-auto">
+            <li class="nav-item">
+              <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/lt">
+                Presentations
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/about">
+                About
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-
+    </nav>
     <div class="container">
-
       {{ content }}
-
     </div> 
 
     <!-- Js placed at the end of the page to load faster -->
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="/static/javascripts/google-analytic.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/javascripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>
