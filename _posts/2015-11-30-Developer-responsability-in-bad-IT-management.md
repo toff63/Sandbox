@@ -3,7 +3,7 @@ comments: true
 date: 2015-11-30 
 layout: post
 title: "Developer responsability in bad IT management"
-img: http://www.wibc.com/sites/g/files/exi441/f/article-images-featured/471016-253771.jpg
+img: /static/images/Developer-responsability-in-bad-IT-management.jpg
 ---
 
 ## What do I call bad IT management

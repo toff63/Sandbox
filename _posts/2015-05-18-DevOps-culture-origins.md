@@ -3,7 +3,7 @@ comments: true
 date: 2015-05-18 
 layout: post
 title: "DevOps culture origins"
-img: http://dharma7.luondo.nl/files/21225/slides/3343/1_bamboo-pipe-dripping-water_105671.jpg
+img: /static/images/devops_origin_cover-min.jpg
 ---
 Last Wednesday (13th of May 2015) I was in Florianopolis at [The Developer's Conference](http://www.thedevelopersconference.com.br/tdc/2015/florianopolis/trilha-devops) giving a short introduction about DevOps and the new culture. I published the [deck in slideshare](http://www.slideshare.net/toff63/devops-e-a-nova-cultura-tdc-florianopolis-2015).
 

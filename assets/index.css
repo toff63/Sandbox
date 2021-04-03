@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .card{
-  @apply bg-gray-200 rounded overflow-hidden shadow-md relative;
+  @apply bg-white rounded overflow-hidden shadow-md relative;
 }

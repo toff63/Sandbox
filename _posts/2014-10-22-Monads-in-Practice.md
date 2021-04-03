@@ -3,6 +3,7 @@ comments: true
 date: 2014-10-22
 layout: post
 title: Monads in Practice
+img: /static/images/monads-in-practice-min.jpg
 ---
 
 I gave a lecture Saturday 18 of October 2014 at [The developer conference](http://thedevelopersconference.com.br/) about Monads and how to create your own. 

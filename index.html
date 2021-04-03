@@ -2,23 +2,24 @@
 layout: default
 ---
 <header>
-  <h1>Francês bagual</h1>
+  <p>Welcome to my blog. I am French and used to work in Porto Alegre, Brazil. People there would call me Francês as my first name is a bit hard to pronounce for Brazilian. Bagual is a term used in south Brazil and in means "great".
+  </p>
+  <p>Disclaimer:<i>Opinions expressed in this blog are my own and not necessarly those of my past or current employers.</i></p>
 </header>
-<p>Welcome to my blog. I am French and used to work in Porto Alegre, Brazil. People there would call me Francês as my first name is a bit hard to pronounce for Brazilian. Bagual is a term used in south Brazil and in means "great".
-</p>
-<p>Disclaimer:<i>The opinions expressed in this blog are my own and not necessarly those of my past or current employers.</i></p>
-
 <div>
   <div>Latest blog posts</div>
   <div class="">
-  {% for post in site.posts %}
-    <div class="card m-5 flx flex-wrap justify-center">
-      <div class="w-6/12 sm:w-4/12 px-4">
-        <img src="{{ post.img }}" class="shadow rounded max-w-full h-auto align-middle border-none" />
-      </div>
-      <span>{{post.date | date_to_string }}</span> <a href="{{ post.url }}">{{ post.title }}</a>
+    {% for post in site.posts %}
+    <div class="card m-5 hover:shadow-lg">
+      <a href="{{ post.url }}" class="flex">
+        <img src="{{ post.img }}" class="shadow rounded w-60 h-60 align-middle border-none object-cover" />
+        <div class="ml-4">
+          <div class="text-2xl text-gray-700">{{ post.title }}</div>
+          <div class="absolute bottom-0 py-2">{{post.date | date_to_string }}</div>
+        </div>
+      </a>
     </div>
-  {% endfor %}
+    {% endfor %}
   </div>
 </div>
 

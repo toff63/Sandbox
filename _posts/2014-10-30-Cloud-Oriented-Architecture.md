@@ -3,6 +3,7 @@ comments: true
 date: 2014-10-30
 layout: post
 title: Building a Cloud oriented architecture
+img: /static/images/Cloud-Oriented-Architecture.webp
 ---
 
 The first thing that you need to realize when going to the cloud is that everything is set for automation. The main *automation* that you won't find in a datacenter is the server creation. What you ultimately want, is to pay as low as possible in term of server. Hence you should optimize your architecture to run on the cheapest serve and use autoscaling functionalities, based on server creation automation, to scale. If your application needs high availability, you should also make sure your architecture can smoothly run on various datacenters and region.

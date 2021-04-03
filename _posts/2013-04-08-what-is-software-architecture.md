@@ -3,6 +3,7 @@ comments: true
 date: 2013-04-08 
 layout: post
 title: What is software architecture
+img: /static/images/what-is-software-architecture-min.jpg
 ---
 
 There are many definitions on the Internet and no real consensus on this matter. At the end of the day, it is a peace of software. However it has some criteria that make it different from the rest of the software. It needs to abstract complexity, attends non functional business needs and evolve with technologies without impacting the development team. If it fails in attending one of those criteria, the project will most probably fail.

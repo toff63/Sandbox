@@ -3,6 +3,7 @@ comments: true
 date: 2014-11-03
 layout: post
 title: Dojo for Software Architect
+img: /static/images/the_dojo_by_eigo_otaku_min.jpg
 ---
 
 Last month I organized a dojo for the architects of my company. To become a software architect in my company, you need to be very highly skilled software developer first. Consequently, even thought, we still write code as software architect, I don't think this is the most critical skill to practice anymore. 
@@ -14,7 +15,7 @@ I decided to practice with them some kind of discovery process.
 Two weeks before the dojo I started spending some time exploring ideas related to  *Data driven* systems. I started with Data driven because a lot of companies are selling data and we are very used to consume and buy data in various forms. It can be as newspaper, watching Netflix or tv. The business is not very hard to guess: those companies usually make people pay to access all or part of their content. From there, I sent an invite to the architects with a subject to study:
 
 
-![dojo-invite](https://pbs.twimg.com/media/B0eUTv8CYAEgxwp.png:medium)
+![dojo-invited](/static/images/dojo-for-software-arechitect-min.png)
 
 The idea is that everybody study everything, but ultimately focusing on the subject that has been assigned to them. I have chosen those subjects because they appear in the mind map I started when studying Data driven system
 

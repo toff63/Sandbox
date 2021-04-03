@@ -3,7 +3,7 @@ comments: true
 date: 2015-11-30 
 layout: post
 title: "Having fun with Esper"
-img: http://sig-en-svt.ovh.org/images%20g-e/Delta%20affluent%20Mississipi.jpg
+img: /static/images/esper-alert.png
 ---
 
 ## What is Esper

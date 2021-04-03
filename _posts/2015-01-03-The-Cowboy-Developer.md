@@ -3,7 +3,7 @@ comments: true
 date: 2015-01-03 
 layout: post
 title: The Cowboy developer
-img: http://www.qldaccommodation.com/wp-content/uploads/2011/05/cowboy.jpg 
+img: /static/images/the-cowboy-developer-min.jpg
 ---
 
 There are several ways to develop software: waterfall, agile, lean or any combination of those. However, it is rare to find an environment that forces developers to work together as a team. Most software developers I know, naturally want to put a headphone on their ear, listen to some music and achieve something they can be proud of. This creates what I will call “cowboys” developers.
