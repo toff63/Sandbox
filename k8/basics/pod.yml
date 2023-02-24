@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: first-pod
+  labels:
+    project: qsk-course
+spec:
+  containers:
+    - name: web-ctr
+      image: educative1/qsk-course:1.0
+      ports:
+        - containerPort: 8080
